@@ -1,0 +1,52 @@
+{
+  "name": "mind-topia-webapp",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "app/**/*.{jsx,tsx,ts,js,json}": [
+      "eslint --config .eslintrc"
+    ]
+  },
+  "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.0",
+    "clsx": "^2.1.0",
+    "ease-motion": "^0.1.2",
+    "framer-motion": "^11.0.28",
+    "next": "14.2.5",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-slick": "^0.30.2",
+    "react-use": "^17.5.0",
+    "slick-carousel": "^1.8.1"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^19.1.0",
+    "@types/node": "^20.14.14",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18",
+    "@types/react-slick": "^0.23.13",
+    "@typescript-eslint/eslint-plugin": "^6",
+    "autoprefixer": "^10",
+    "commitlint": "^19.2.1",
+    "eslint": "^8",
+    "eslint-config-next": "13.5.6",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-unused-imports": "^3.1.0",
+    "husky": "^8",
+    "lint-staged": "^15.2.2",
+    "postcss": "^8",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.4.1",
+    "tailwind-variants": "^0.1.18",
+    "tailwindcss": "^3",
+    "typescript": "5.2.2"
+  }
+}

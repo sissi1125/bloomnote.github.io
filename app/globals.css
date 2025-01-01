@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .h-fill-available {
+    height: fill-available;
+    height: -webkit-fill-available;
+    height: -moz-available;
+  }
+}
+.gradient-text {
+  background-image: linear-gradient(303.93deg, #70b442 14.71%, #ceeaac 107.4%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.custom-slick-dots {
+  position: relative;
+  display: flex !important;
+  justify-content: center;
+  bottom: 44px;
+}
+.custom-slick-dots li {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
+.custom-slick-dots li button {
+  font-size: 0;
+  width: 8px;
+  height: 8px;
+  background-color: #d9d9d9;
+  opacity: 0.6;
+  border-radius: 50%;
+}
+
+.custom-slick-dots li.slick-active button {
+  opacity: 1;
+}
