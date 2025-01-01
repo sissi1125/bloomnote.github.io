@@ -4,7 +4,6 @@ import { useGroup } from 'ease-motion';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import Slider from 'react-slick';
-import VideoModal from '../components/video-modal';
 import { useInView, useMobile } from '../hooks';
 import { communityCommentsConfig, communityVideosConfig } from '../utils/config';
 
