@@ -35,9 +35,9 @@ export default function ProductCard(props: CardProps) {
       onClick={onClick}>
       <div className="sm:mt-[26px]">
         <div className={cn('card-icon size-[60px] shrink-0 sm:size-[92px]', type)}></div>
-        <p className="text-center text-[14px] uppercase text-white sm:hidden">{type}</p>
+        <p className="text-center text-[14px] uppercase text-[#333] sm:hidden">{type}</p>
       </div>
-      <div className="text-white sm:group-hover:hover-nav sm:-mt-[16px] sm:group-hover:text-white">
+      <div className="text-[#333] sm:group-hover:hover-nav sm:-mt-[16px] sm:group-hover:text-[#333]">
         <p className="mb-3 mt-1 hidden text-center text-[24px] uppercase sm:block">{type.replace('-', ' ')}</p>
         {textMap[type].map((t, i) => (
           <p key={i} className="ml-[18px] text-[12px] font-light uppercase sm:ml-0 sm:text-center sm:text-sm">
@@ -45,7 +45,7 @@ export default function ProductCard(props: CardProps) {
           </p>
         ))}
       </div>
-      <button className="invisible absolute bottom-[27px] z-10 hidden h-[34px] w-[160px] rounded-full bg-[#373737] text-[16px] text-white opacity-0 duration-200 group-hover:visible group-hover:opacity-100 group-hover:[text-shadow:0_0_8px_#fff] sm:block">
+      <button className="invisible absolute bottom-[27px] z-10 hidden h-[34px] w-[160px] rounded-full bg-[#373737] text-[16px] text-[#333] opacity-0 duration-200 group-hover:visible group-hover:opacity-100 group-hover:[text-shadow:0_0_8px_#fff] sm:block">
         WATCH
       </button>
       <div

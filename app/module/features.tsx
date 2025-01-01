@@ -95,16 +95,16 @@ export default function Features() {
           {/* <Slider {...settings}>
             {mindtopiaSlickImg.map((item) => (
               <div key={item.id} className="relative h-[342px] w-[331px] overflow-hidden rounded-xl p-4 outline-none">
-                <p className="relative z-10 max-w-[188px] text-lg leading-5 text-white">
+                <p className="relative z-10 max-w-[188px] text-lg leading-5 text-[#333]">
                   Join our community on Discord to{' '}
                 </p>
                 <p className="relative z-10 my-[10px] h-px bg-white"></p>
-                <p className="relative z-10 whitespace-pre-line text-end text-2xl leading-6 text-white">{item.title}</p>
+                <p className="relative z-10 whitespace-pre-line text-end text-2xl leading-6 text-[#333]">{item.title}</p>
                 <Image src={item.url} alt="image" fill />
               </div>
             ))}
           </Slider> */}
-          <div className="text-[28px] text-white">
+          <div className="text-[28px] text-[#333]">
             <p>Join our community on</p>
             <p>Discord to</p>
             <div className="mt-[38px] bg-gradient-to-r from-[#CEEAAC] from-[-40%] to-[#70B442] to-[36%] bg-clip-text font-medium text-transparent">
@@ -113,19 +113,19 @@ export default function Features() {
               <p>Get the latest updates</p>
             </div>
           </div>
-          <DiscordButton className="relative top-[52px] mx-auto" />
+          {/* <DiscordButton className="relative top-[52px] mx-auto" /> */}
         </div>
         <div className=" max-w-[600px] flex-1 sm:-mt-12">
           <h4
             ref={titleRef}
-            className="relative w-full text-center text-lg uppercase text-white opacity-0 sm:-top-[78px] sm:w-fit sm:text-[32px]">
+            className="relative w-full text-center text-lg uppercase text-[#333] opacity-0 sm:-top-[78px] sm:w-fit sm:text-[32px]">
             What makes mindtopia special?
           </h4>
           <FeatureAccordion className="hidden sm:block" />
           <MobileFeatureAccordion className="block px-[24px] sm:hidden" />
           <div className="mt-[71px] block pb-[100px] sm:hidden sm:pb-0">
             <div className="join-text opacity-0">
-              <p className="text-center text-lg text-white">Join our community on Discord to</p>
+              <p className="text-center text-lg text-[#333]">Join our community on Discord to</p>
               <p className=" bg-gradient-to-r from-[#CEEAAC] from-[-40%] to-[#70B442] to-[36%] bg-clip-text text-center text-[22px] font-medium text-transparent">
                 Connect, Meditate, Share
               </p>
@@ -140,18 +140,7 @@ export default function Features() {
         className="absolute bottom-[74px] left-1/2 hidden -translate-x-1/2 sm:flex"
       />
       <ScrollDownIndicator show className="bottom-2" />
-      <Image
-        alt="bg"
-        fill
-        className="-z-[1] hidden h-full w-full object-cover sm:block"
-        src="https://appasset.xverse.cn/98/plane/29c2c6d3f1154c15b6ce06dedbab1041/review-pc-bg-2.png"
-      />
-      <Image
-        alt="mobile-bg"
-        fill
-        className="-z-[1] h-full w-full object-cover sm:hidden"
-        src="https://appasset.xverse.cn/98/plane/b44487487e2f47f4a9484a56a6e018e3/review-mobile-bg-2.png"
-      />
+    
     </div>
   );
 }
@@ -162,7 +151,7 @@ function DiscordButton({ className }: { className?: string }) {
       href={mediaConfig.discord}
       target="_black"
       className={cn(
-        'group relative flex h-[40px] w-[154px] items-center justify-center rounded-[30px] border border-white bg-black/15 text-white backdrop-blur-sm transition-all duration-200 ease-linear hover:bg-white hover:text-black',
+        'group relative flex h-[40px] w-[154px] items-center justify-center rounded-[30px] border border-white bg-black/15 text-[#333] backdrop-blur-sm transition-all duration-200 ease-linear hover:bg-white hover:text-black',
         className,
       )}
       onClick={() => {}}>

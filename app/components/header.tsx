@@ -4,7 +4,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { tv } from 'tailwind-variants';
-
+import Image from 'next/image';
+import { BloomNavEnum } from '../utils/bloomconfig';
 import { useClickOutSide } from '../hooks';
 // import { mediaConfig } from '../utils/config';
 import ToggleButton from './toggle-button';
@@ -12,25 +13,30 @@ import ToggleButton from './toggle-button';
 const navList = [
   {
     label: '功能',
-    id: 'overview',
+    id: BloomNavEnum.FEATURES,
   },
   {
-    label: '社区',
-    id: 'product',
+    label: '价格',
+    id: BloomNavEnum.PRICING,
   },
   {
     label: '帮助',
-    id: 'reviews',
+    id: BloomNavEnum.HELP,
   },
   {
-    label: 'CONTACT',
-    id: 'contact',
+    label: '联系我们',
+    id: BloomNavEnum.CONTACT,
   },
 ];
 
 const pcNavItem = tv({
   base: 'list-none whitespace-nowrap h-[64px] flex items-center text-[20px] text-[#333] cursor-pointer transition-all hover:hover-nav',
 });
+
+const logoItem = tv({
+  base: 'mx-[36px] list-none whitespace-nowrap h-[64px] flex items-center text-[20px] font-bold text-[#333] cursor-pointer hover:hover-nav',
+});
+
 const mobileNavItem = tv({
   base: 'z-20 block h-[36px] px-[25px] list-none mb-[16px] last:mb-0 last:after:content-[unset] text-[#333] relative after:w-full after:left-[25px] after:absolute after:bottom-0 after:h-px after:bg-gradient-to-r after:from-white/40 after:to-transparent',
 });
@@ -75,8 +81,9 @@ export default function Header(props: HeaderProps) {
     setClientBody(document.body);
   }, []);
   return (
-    <header className="fixed left-0 top-0 z-[999] flex h-[64px] w-full items-center justify-between px-[25px] shadow-md backdrop-blur-[20px] sm:h-[80px] sm:justify-center">
-      <div className={cn(pcNavItem())} onClick={onLogoClick}>
+    <header className="fixed left-0 top-0 z-[999] flex h-[64px] w-full items-center justify-between px-[100px] shadow-md backdrop-blur-[20px] sm:h-[80px] sm:justify-between">
+      <div className={cn(logoItem())} onClick={onLogoClick}>
+        <Image className='mr-2' src="/images/bloom-logo.png" alt="sun" width={20} height={20} />
         <span className="font-extrabold text-[#333]">BLOOMNOTE</span>
       </div>
       <div className="mx-[36px] hidden items-center gap-x-[20px] sm:flex xl:mx-[88px] xl:gap-x-[40px]">

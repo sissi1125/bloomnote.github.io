@@ -1,43 +1,54 @@
 'use client';
 import { useCallback, useState } from 'react';
-import { useFavicon } from 'react-use';
 import BackToTop from './components/back-to-top';
 // import EmailSubscribeModal from './components/email-subscribe-modal';
 import Header from './components/header';
 import { useDarkMode } from './hooks';
 import Contact from './module/contact';
 import Home from './module/home';
-import Overview from './module/overview';
-import Product from './module/product';
+import Pricing from './module/pricing';
+import Help from './module/help';
 import Reviews from './module/reviews';
+import { useRouter } from 'next/navigation';
+
+import { BloomNavEnum } from './utils/bloomconfig';
+import Features from './module/features';
 
 export default function App() {
   const [showEmailModal, setShowEmailModal] = useState(true);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+  const router = useRouter()
+
+  const navigateToHash = (hash: string) => {
+    router?.push(`#${hash}`);
+  };
+
+  
   const scrollToSection = useCallback((id: string) => {
-    const section = document.getElementById(id);
-    section?.scrollIntoView({ behavior: 'smooth' });
+    navigateToHash(id)
+    // const section = document.getElementById(id);
+    // section?.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
-  const isDarkMode = useDarkMode();
-  useFavicon(isDarkMode ? '/images/favicon-white.ico' : '/images/favicon-black.ico');
+
 
   return (
     <div className="overflow-x-hidden">
       <Header onNavClick={scrollToSection} onLogoClick={() => scrollToSection('home')} />
-      <div id="home">
+      <div id={BloomNavEnum.HOME}>
         <Home />
       </div>
-      <div id="overview">
-        <Overview />
+      <div id={BloomNavEnum.FEATURES}>
+        <Features />
       </div>
-      <div id="product">
-        <Product />
+      <div id={BloomNavEnum.PRICING}>
+        <Pricing />
       </div>
-      <div id="reviews">
-        <Reviews />
+      <div id={BloomNavEnum.HELP}>
+        <Help />
       </div>
-      <div id="contact">
+      <div id={BloomNavEnum.CONTACT}>
         <Contact />
       </div>
       <BackToTop />

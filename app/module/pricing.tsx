@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 import ScrollDownIndicator from '../components/scrollDownIndicator';
 import { useEnterPageReport, useHeartBeatReport, useInView, useMobile } from '../hooks';
-export default function Features() {
+export default function help() {
   const overviewRef = useRef<HTMLDivElement>(null);
   const p1Ref = useRef<HTMLParagraphElement>(null);
   const p2Ref = useRef<HTMLParagraphElement>(null);

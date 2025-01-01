@@ -76,7 +76,7 @@ export default function SceneCarousel(props: SceneCarouselProps) {
         {list.map((scene, index) => (
           <div key={index} className="h-[442px]">
             <div className="absolute bottom-0 z-10 h-[162px] w-full rounded-lg" style={scene.style}></div>
-            <p className="absolute bottom-6 z-10 w-full text-center text-white">{scene.text}</p>
+            <p className="absolute bottom-6 z-10 w-full text-center text-[#333]">{scene.text}</p>
             <video
               poster={scene.poster}
               src={scene.url}

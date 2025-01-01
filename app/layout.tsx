@@ -1,14 +1,18 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
-import { Spinnaker } from 'next/font/google';
 import './globals.css';
 
-const spinnaker = Spinnaker({ weight: '400', subsets: ['latin'] });
+import { Merriweather } from 'next/font/google';
+
+const openSans = Merriweather({ 
+  subsets: ['latin'],
+  weight: ['400', '700'],
+});
 
 // TODO SEO配置
 // refer to https://nextjs.org/docs/app/building-your-application/deploying/production-checklist#metadata-and-seo
 export const metadata: Metadata = {
-  title: 'MindtopiaVR',
+  title: 'Bloomnote',
   description: '',
   viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
 };
@@ -16,8 +20,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <Script async src="https://static.xverse.cn/npm/hls.js@1.2.8/dist/hls.min.js"></Script>
-      <body className={spinnaker.className}>{children}</body>
+      <body className={openSans.className}>{children}</body>
     </html>
   );
 }

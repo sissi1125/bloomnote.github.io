@@ -11,7 +11,6 @@ export function subscribeEmail(email: string) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'x-xverse-trace-id': `${Date.now()}`,
     },
     body: JSON.stringify({ emailAddr: email }),
   });

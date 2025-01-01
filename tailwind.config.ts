@@ -53,7 +53,8 @@ const config: Config = {
     plugin(function ({ addComponents }) {
       addComponents({
         '.hover-nav': {
-          'text-shadow': '0 0 6px #fff',
+          // 'text-shadow': '0 0 6px #666',
+          'font-weight': '700',
         },
         '.home-text-shadow': {
           'text-shadow': '4px 4px 20px rgba(28, 28, 28, 0.30)',

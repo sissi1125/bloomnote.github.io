@@ -101,7 +101,7 @@ export default function EmailSubscribeModal(props: EmailSubscribeModalProps) {
               <span className="absolute h-4 w-[2px] rotate-45 rounded-full bg-white"></span>
               <span className="absolute h-4 w-[2px] -rotate-45 rounded-full bg-white"></span>
             </div>
-            <div className="relative h-[225px] w-full text-white sm:h-full sm:w-1/2">
+            <div className="relative h-[225px] w-full text-[#333] sm:h-full sm:w-1/2">
               <div className="absolute top-16 z-10 w-full leading-[1.7em] sm:hidden">
                 <p className="text-center text-[26px] font-bold">DISCOVER MORE</p>
                 <p className="text-center text-[26px] font-bold">WITH MINDTOPIA</p>
@@ -134,7 +134,7 @@ export default function EmailSubscribeModal(props: EmailSubscribeModalProps) {
               />
             </div>
             <div className="relative mt-[35px] flex flex-col px-[30px] sm:mt-0 sm:flex-1 sm:items-center sm:justify-center">
-              <div className="z-10 mb-[100px] hidden w-full text-white sm:block">
+              <div className="z-10 mb-[100px] hidden w-full text-[#333] sm:block">
                 <p className="text-center text-[32px] font-bold">DISCOVER MORE</p>
                 <p className="text-center text-[32px] font-bold">WITH MINDTOPIA</p>
                 <div className="mt-[10px] text-center">
@@ -143,7 +143,7 @@ export default function EmailSubscribeModal(props: EmailSubscribeModalProps) {
                 </div>
               </div>
               <div className="relative flex h-10 items-center rounded-lg border border-[#6B6B6B] px-3 sm:w-[260px] sm:rounded-none sm:border-l-0 sm:border-r-0 sm:border-t-0 sm:border-b-white sm:px-0">
-                <i className="relative flex items-center text-2xl text-white/60 after:absolute after:-right-1 after:h-[10px] after:w-px after:bg-white/60 sm:text-4xl sm:text-white sm:after:content-[unset]">
+                <i className="relative flex items-center text-2xl text-[#333]/60 after:absolute after:-right-1 after:h-[10px] after:w-px after:bg-white/60 sm:text-4xl sm:text-[#333] sm:after:content-[unset]">
                   <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M11.764 14.4139C11.8462 14.4548 11.9284 14.4548 11.9695 14.4548C12.0517 14.4548 12.1339 14.4548 12.175 14.4139L19.5714 9.95483L19.6125 9.91392L19.6536 9.87302C19.6536 9.83211 19.6947 9.83211 19.6947 9.7912C19.6947 9.7912 19.7358 9.75029 19.7358 9.70938V9.62756V7.37756C19.7769 6.31392 18.914 5.45483 17.8045 5.45483H6.1345C5.02503 5.45483 4.16211 6.31392 4.16211 7.37756V16.5821C4.16211 17.6867 5.02503 18.5457 6.1345 18.5457H17.8456C18.914 18.5457 19.818 17.6867 19.818 16.5821V12.4912C19.818 12.2457 19.6536 12.0821 19.4071 12.0821C19.1605 12.0821 18.9961 12.2457 18.9961 12.4912V16.5821C18.9961 17.1957 18.503 17.7276 17.8456 17.7276H6.1345C5.47704 17.7276 4.98394 17.2367 4.98394 16.623V10.2821L11.764 14.4139ZM6.1345 6.27302H17.8456C18.4619 6.27302 18.9961 6.76392 18.9961 7.41847V9.38211L11.9695 13.5957L4.98394 9.3412V7.37756C4.98394 6.76392 5.47704 6.27302 6.1345 6.27302Z"
@@ -154,14 +154,14 @@ export default function EmailSubscribeModal(props: EmailSubscribeModalProps) {
                 <input
                   type="text"
                   value={emailVal}
-                  className="relative ml-3 h-full flex-1 border-none bg-transparent text-white/60 caret-white/60 outline-none placeholder:text-sm sm:placeholder:text-base"
+                  className="relative ml-3 h-full flex-1 border-none bg-transparent text-[#333]/60 caret-white/60 outline-none placeholder:text-sm sm:placeholder:text-base"
                   placeholder="Enter Your Email Address"
                   onChange={handleOnEmailChange}
                 />
                 <p className="absolute -bottom-7 w-full text-center text-red-400">{errMsg}</p>
               </div>
               <button
-                className="mx-auto mt-[35px] h-10 w-[200px] rounded-full bg-button-gradient font-medium text-white sm:h-[50px] sm:w-[300px] sm:text-[20px]"
+                className="mx-auto mt-[35px] h-10 w-[200px] rounded-full bg-button-gradient font-medium text-[#333] sm:h-[50px] sm:w-[300px] sm:text-[20px]"
                 onClick={handleOnSubmit}>
                 SUBSCRIBE
               </button>

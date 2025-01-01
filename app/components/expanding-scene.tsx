@@ -46,7 +46,7 @@ export default function ExpandingScene(props: ExpandingSceneProps) {
               preload="auto"
               src={scene.url}
               className="h-full w-full object-cover"></video>
-            <p className="absolute bottom-[20px] left-1/2 -translate-x-1/2 whitespace-nowrap text-white transition-all duration-200 ease-linear group-hover:mx-0">
+            <p className="absolute bottom-[20px] left-1/2 -translate-x-1/2 whitespace-nowrap text-[#333] transition-all duration-200 ease-linear group-hover:mx-0">
               {scene.text}
             </p>
           </div>

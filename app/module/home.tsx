@@ -72,21 +72,21 @@ export default function Home() {
       className={cn('flex h-screen w-screen flex-col justify-center overflow-hidden', {
         'h-fill-available': isRealSafari,
       })}>
-      <div className="flex flex-col items-center justify-center px-10 text-[16px] text-[#333] [&_p]:home-text-shadow sm:[&_p]:home-text-shadow sm:text-[20px] [&_p]:text-center">
+      <div className="flex flex-col items-center justify-center px-10 text-[16px] text-[#333] sm:text-[20px] [&_p]:text-center">
         <div
           // ref={brandNameRef}
           className="text-[44px] font-[500] leading-[48px] tracking-[2px] sm:text-[90px] sm:tracking-[5px]">
-          BloomNote
+          Bloomnote
         </div>
         <div className="my-10 flex h-[90px] w-[90px] items-center justify-center rounded-[10px] ">
           <Image ref={logoRef} src="/images/bloom-logo.png" alt="sun" width={72} height={72} />
         </div>
         <div className="">
-          <p>BloomNote是一款功能强大的笔记应用</p>
+          <p>Bloomnote是一款功能强大的笔记应用</p>
           <p>应用提供多种模块，包括文本、表格、语音、心情、文件、链接预览等，满足您多样化的记录需求。</p>
           <p>您可以通过自定义样式，打造独特的笔记风格。</p>
           <p>借助时间线功能，轻松按日期组织笔记和日记，使信息管理更加高效和便捷。</p>
-          <p>无论是工作还是生活，BloomNote都是您的理想选择。</p>
+          <p>无论是工作还是生活，Bloomnote都是您的理想选择。</p>
         </div>
       </div>
       <DownloadButtonGroup

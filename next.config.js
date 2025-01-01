@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: false,
   output: 'export',
-  images: { unoptimized: true, domains: ['https://asset-sh.xverse.cn'] },
+  images: { unoptimized: true },
   // i18n: {
   //   locales: ['zh-CN', 'en'],
   //   defaultLocale: 'zh-CN', // 默认语言

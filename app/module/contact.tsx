@@ -98,17 +98,17 @@ export default function Contact() {
   }, [isIntersecting, isMobile]);
   return (
     <div ref={ref} className="relative h-screen overflow-hidden px-5 sm:px-[12%]">
-      <h4 className="contact-anim pc-contact-anim relative z-10 mt-[100px] text-center text-lg text-white opacity-0 after:absolute after:bottom-0 after:left-1/2 after:top-[2em]  after:h-px after:w-[48px] after:-translate-x-1/2 after:bg-white sm:mt-[146px] sm:text-start sm:text-[32px] sm:after:left-0 sm:after:top-[1.6em] sm:after:w-[60px] sm:after:translate-x-0">
+      <h4 className="contact-anim pc-contact-anim relative z-10 mt-[100px] text-center text-lg text-[#333] opacity-0 after:absolute after:bottom-0 after:left-1/2 after:top-[2em]  after:h-px after:w-[48px] after:-translate-x-1/2 after:bg-white sm:mt-[146px] sm:text-start sm:text-[32px] sm:after:left-0 sm:after:top-[1.6em] sm:after:w-[60px] sm:after:translate-x-0">
         Contact Us
       </h4>
-      <div className="contact-anim pc-contact-anim relative z-10 mt-[16px] text-center text-xl text-white opacity-0 sm:mt-[56px] sm:text-start">
+      <div className="contact-anim pc-contact-anim relative z-10 mt-[16px] text-center text-xl text-[#333] opacity-0 sm:mt-[56px] sm:text-start">
         <span>Email us at </span>
         <a className="text-[#95DB46] underline" href="mailto:mindtopia@xverse.cn">
           mindtopia@xverse.cn
         </a>
         <p>or submit your comment below</p>
       </div>
-      <div className="contact-anim pc-textarea-anim relative z-10 mt-[20px] flex w-full flex-col items-center text-white opacity-0 sm:items-start">
+      <div className="contact-anim pc-textarea-anim relative z-10 mt-[20px] flex w-full flex-col items-center text-[#333] opacity-0 sm:items-start">
         <p>Your Comments</p>
         <Textarea
           className="mt-2 h-[152px] w-full sm:w-[517px]"
@@ -161,11 +161,11 @@ export default function Contact() {
             ))}
         </div>
       </div>
-      <div className="absolute bottom-4 left-1/2 z-10 w-full -translate-x-1/2 text-center text-white sm:bottom-10 sm:text-xl">
+      <div className="absolute bottom-4 left-1/2 z-10 w-full -translate-x-1/2 text-center text-[#333] sm:bottom-10 sm:text-xl">
         © XVERSE Technology Inc.
       </div>
       <SuccessModal show={showSuccessModal} text="SUBMIT SUCCEEDS" onClose={() => setShowSuccessModal(false)} />
-      <Image
+      {/* <Image
         alt="bg"
         fill
         className="z-1 hidden h-full w-full object-cover sm:block"
@@ -178,7 +178,7 @@ export default function Contact() {
           src="https://appasset.xverse.cn/98/plane/fa758d2d409b48b7bc7b1df4848ecb5b/contact-mobile-bg.jpg"
           className="object-cover opacity-60"
         />
-      </div>
+      </div> */}
     </div>
   );
 }
@@ -189,7 +189,7 @@ function SubmitButton({ className, ...props }: SubmitButtonProps) {
   return (
     <button
       className={cn(
-        'hover:borer-white active h-[42px] rounded-full border border-white bg-transparent px-[34px] text-white transition-all duration-200 ease-linear sm:hover:bg-white sm:hover:text-black',
+        'hover:borer-white active h-[42px] rounded-full border border-white bg-transparent px-[34px] text-[#333] transition-all duration-200 ease-linear sm:hover:bg-white sm:hover:text-black',
         className,
       )}
       {...props}>
@@ -215,7 +215,7 @@ function MediaIcon(props: MediaIconProps) {
       <div className="relative size-[40px] transition-all duration-200 sm:size-[48px] sm:group-hover:scale-125">
         <Image src={icon} fill alt={name} />
       </div>
-      <p className="mt-2 text-center text-[10px] text-white sm:mt-3 sm:text-[12px]">{name}</p>
+      <p className="mt-2 text-center text-[10px] text-[#333] sm:mt-3 sm:text-[12px]">{name}</p>
     </a>
   );
 }

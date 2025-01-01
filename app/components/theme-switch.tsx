@@ -25,7 +25,7 @@ export default function ThemeSwitch(props: ThemeSwitchProps) {
           })}
           onClick={() => handleThemeChange('light')}>
           <Image src="/images/icon-sun.png" alt="sun" width={24} height={24} />
-          <span className="ml-1 select-none text-[12px] text-white [text-shadow:0_0_2px_#fff]">DAY</span>
+          <span className="ml-1 select-none text-[12px] text-[#333] [text-shadow:0_0_2px_#fff]">DAY</span>
         </div>
         <div
           className={cn('flex h-full w-1/2 cursor-pointer items-center justify-center transition', {
@@ -33,7 +33,7 @@ export default function ThemeSwitch(props: ThemeSwitchProps) {
           })}
           onClick={() => handleThemeChange('dark')}>
           <Image src="/images/icon-moon.png" alt="sun" width={24} height={24} />
-          <span className="ml-1 select-none text-[12px] text-white [text-shadow:0_0_2px_#fff]">NIGHT</span>
+          <span className="ml-1 select-none text-[12px] text-[#333] [text-shadow:0_0_2px_#fff]">NIGHT</span>
         </div>
       </div>
       <>

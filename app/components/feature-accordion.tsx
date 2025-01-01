@@ -22,10 +22,10 @@ export default function FeatureAccordion(props: FeatureAccordionProps) {
             <div className="relative size-[40px] shrink-0">
               <Image src={item.icon} alt="icon" fill />
             </div>
-            <p className="text-[22px] text-white sm:ml-[14px]">{item.title}</p>
+            <p className="text-[22px] text-[#333] sm:ml-[14px]">{item.title}</p>
           </AccordionTrigger>
-          <AccordionContent className={cn('text-white sm:pl-[40px]')}>
-            <p className={cn('overflow-hidden text-white/70')}>{item.content}</p>
+          <AccordionContent className={cn('text-[#333] sm:pl-[40px]')}>
+            <p className={cn('overflow-hidden text-[#333]/70')}>{item.content}</p>
           </AccordionContent>
         </AccordionItem>
       ))}
@@ -43,9 +43,9 @@ export function MobileFeatureAccordion({ className }: { className?: string }) {
           <div className="relative size-[40px] shrink-0">
             <Image src={item.icon} alt="icon" fill />
           </div>
-          <div className={cn('ml-[10px] text-white')}>
+          <div className={cn('ml-[10px] text-[#333]')}>
             <p className="">{item.title}</p>
-            <p className={cn('overflow-hidden text-[12px] text-white/70')}>{item.content}</p>
+            <p className={cn('overflow-hidden text-[12px] text-[#333]/70')}>{item.content}</p>
           </div>
         </div>
       ))}

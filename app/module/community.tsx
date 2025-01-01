@@ -130,13 +130,13 @@ export default function Community() {
 
   return (
     <div ref={ref} className="relative overflow-hidden sm:px-[9%]">
-      <h4 className="h4-text mb-[20px] mt-[84px] text-center text-lg text-white opacity-0 sm:mb-[34px] sm:mt-[120px] sm:text-start sm:text-[32px]">
+      <h4 className="h4-text mb-[20px] mt-[84px] text-center text-lg text-[#333] opacity-0 sm:mb-[34px] sm:mt-[120px] sm:text-start sm:text-[32px]">
         HEAR FROM OUR COMMUNITY
       </h4>
       <MobileCommentsSlick className="block sm:!hidden" />
       <PCCommentsSlick className="hidden sm:block" />
       <div className="space-y-5 px-[22px] sm:space-y-0 sm:px-0 sm:pb-[120px]">
-        <h4 className="h4-text my-5 mt-5 text-center text-lg text-white opacity-0 sm:my-0 sm:mt-20 sm:text-start sm:text-[32px]">{`YOUTUBERS'S REVIEWS`}</h4>
+        <h4 className="h4-text my-5 mt-5 text-center text-lg text-[#333] opacity-0 sm:my-0 sm:mt-20 sm:text-start sm:text-[32px]">{`YOUTUBERS'S REVIEWS`}</h4>
         <div className="flex flex-col items-center gap-5 sm:!mt-[75px] sm:flex-row sm:gap-12">
           {communityVideosConfig.map((video) => (
             <div
@@ -150,31 +150,13 @@ export default function Community() {
               onMouseLeave={() => videoMouseEvent(`video-cover-${video.id}`, 'leave')}
               style={{ transformOrigin: 'center center' }}
               className="video-preview group relative aspect-video w-full cursor-pointer overflow-hidden rounded-[10px] opacity-0 before:absolute before:inset-0 before:z-10 before:bg-black/40 before:transition-all before:ease-linear sm:hover:before:bg-black/0">
-              <div className="absolute left-1/2 top-1/2 z-10 h-12 w-12 -translate-x-1/2 -translate-y-1/2 sm:h-[60px] sm:w-[60px]">
-                <Image
-                  fill
-                  src="https://appasset.xverse.cn/98/plane/264ef6566a484d8c94ffae6e79b0d87a/play-icon.png"
-                  alt="play"
-                />
-              </div>
+      
               <Image src={video.cover} fill alt="cover" className="object-cover" />
             </div>
           ))}
         </div>
       </div>
-      <VideoModal show={showModal} type="iframe" url={currentVideo} onClose={() => setShowModal(false)} />
-      <Image
-        alt="bg"
-        fill
-        className="-z-[1] hidden h-full w-full object-cover sm:block"
-        src="https://asset-sh.xverse.cn/compress/image/feb0fd2dbe80427a8476986e68cad4c6/20240409121032.png"
-      />
-      <Image
-        alt="mobile-bg"
-        fill
-        className="-z-[1] h-full w-full object-cover sm:hidden"
-        src="https://appasset.xverse.cn/98/plane/f5e269eb2a704216832e9033ed2e572d/20240416125208.png"
-      />
+     
     </div>
   );
 }
@@ -195,7 +177,7 @@ function MobileCommentsSlick({ className }: { className?: string }) {
       {communityCommentsConfig.map((item) => (
         <div
           key={item.id}
-          className="!flex h-[110px] items-center overflow-hidden rounded-2xl border border-[#4E4E4E] p-[10px] px-3 text-white">
+          className="!flex h-[110px] items-center overflow-hidden rounded-2xl border border-[#4E4E4E] p-[10px] px-3 text-[#333]">
           <div className="flex h-full w-[52px] flex-col items-center justify-center">
             <Image src={item.avatar} alt="avatar" width={52} height={52} />
             <p className="mt-1 text-center text-sm">{item.userName}</p>
@@ -212,7 +194,7 @@ function PCCommentsSlick({ className }: { className?: string }) {
 
   return (
     <div className={cn('pc-slick opacity-0', className)}>
-      <div className="pointer-events-none absolute -top-[160px] right-[520px] text-[320px] text-white/5">&#8220;</div>
+      <div className="pointer-events-none absolute -top-[160px] right-[520px] text-[320px] text-[#333]/5">&#8220;</div>
       <Slider
         ref={(slider) => {
           sliderRef.current = slider;
@@ -221,17 +203,17 @@ function PCCommentsSlick({ className }: { className?: string }) {
         draggable={false}
         className="[&_.slick-arrow]:top-[140px] [&_.slick-arrow]:before:content-[unset] [&_.slick-next]:left-0 [&_.slick-prev]:left-[70px]">
         {communityCommentsConfig.map((item) => (
-          <div key={item.id} className="!flex justify-between text-white">
+          <div key={item.id} className="!flex justify-between text-[#333]">
             <div className="user-avatar flex">
               <div className="relative h-[90px] w-[90px] rounded-full">
                 <Image src={item.avatar} alt="avatar" fill />
               </div>
               <div className="ml-8 h-full">
-                <p className="text-2xl text-white">{item.userName}</p>
-                <p className="text-xl text-white/70">{item.extra}</p>
+                <p className="text-2xl text-[#333]">{item.userName}</p>
+                <p className="text-xl text-[#333]/70">{item.extra}</p>
               </div>
             </div>
-            <div className="user-comments relative z-10 w-[600px] text-xl leading-[2em] text-white">{item.comment}</div>
+            <div className="user-comments relative z-10 w-[600px] text-xl leading-[2em] text-[#333]">{item.comment}</div>
           </div>
         ))}
       </Slider>

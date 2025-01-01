@@ -76,9 +76,9 @@ export default function SuccessModal(props: SuccessModalProps) {
                 />
               </svg>
             </i>
-            <p className="mt-[10px] text-[14px] font-bold text-white sm:mt-5 sm:text-[28px]">{text}</p>
+            <p className="mt-[10px] text-[14px] font-bold text-[#333] sm:mt-5 sm:text-[28px]">{text}</p>
             <button
-              className="mt-10 h-[40px] w-[160px] rounded-full bg-button-gradient text-white sm:mt-20 sm:h-[50px] sm:w-[300px] sm:text-[20px]"
+              className="mt-10 h-[40px] w-[160px] rounded-full bg-button-gradient text-[#333] sm:mt-20 sm:h-[50px] sm:w-[300px] sm:text-[20px]"
               onClick={onClose}>
               {okText}
             </button>
