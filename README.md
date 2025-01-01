@@ -1,4 +1,4 @@
-# mindTopia
+# Bloomnote
 
 ## dev
 
