@@ -140,7 +140,6 @@ export default function Features() {
         className="absolute bottom-[74px] left-1/2 hidden -translate-x-1/2 sm:flex"
       />
       <ScrollDownIndicator show className="bottom-2" />
-    
     </div>
   );
 }

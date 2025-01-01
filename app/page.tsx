@@ -18,20 +18,17 @@ export default function App() {
   const [showEmailModal, setShowEmailModal] = useState(true);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-  const router = useRouter()
+  const router = useRouter();
 
   const navigateToHash = (hash: string) => {
     router?.push(`#${hash}`);
   };
 
-  
   const scrollToSection = useCallback((id: string) => {
-    navigateToHash(id)
+    navigateToHash(id);
     // const section = document.getElementById(id);
     // section?.scrollIntoView({ behavior: 'smooth' });
   }, []);
-
-
 
   return (
     <div className="overflow-x-hidden">

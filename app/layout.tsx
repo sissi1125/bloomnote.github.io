@@ -4,7 +4,7 @@ import './globals.css';
 
 import { Merriweather } from 'next/font/google';
 
-const openSans = Merriweather({ 
+const openSans = Merriweather({
   subsets: ['latin'],
   weight: ['400', '700'],
 });

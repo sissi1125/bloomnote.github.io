@@ -83,7 +83,7 @@ export default function Header(props: HeaderProps) {
   return (
     <header className="fixed left-0 top-0 z-[999] flex h-[64px] w-full items-center justify-between px-[100px] shadow-md backdrop-blur-[20px] sm:h-[80px] sm:justify-between">
       <div className={cn(logoItem())} onClick={onLogoClick}>
-        <Image className='mr-2' src="/images/bloom-logo.png" alt="sun" width={20} height={20} />
+        <Image className="mr-2" src="/images/bloom-logo.png" alt="sun" width={20} height={20} />
         <span className="font-extrabold text-[#333]">BLOOMNOTE</span>
       </div>
       <div className="mx-[36px] hidden items-center gap-x-[20px] sm:flex xl:mx-[88px] xl:gap-x-[40px]">

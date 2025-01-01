@@ -1,4 +1,3 @@
-
 export enum BloomNavEnum {
   /**
    * 首屏
@@ -7,40 +6,36 @@ export enum BloomNavEnum {
   /**
    * 功能
    */
-  FEATURES='features',
+  FEATURES = 'features',
   /**
    * 价格
    */
-  PRICING='pricing',
+  PRICING = 'pricing',
   /**
    * 帮助
    */
-  HELP='help',
+  HELP = 'help',
   /**
    * 联系我们
    */
-  CONTACT='contact',
+  CONTACT = 'contact',
 }
-
-
-
 
 const navSections = {
-  [BloomNavEnum.FEATURES]:{
-    zhName:'功能',
-    enName:BloomNavEnum.FEATURES,
+  [BloomNavEnum.FEATURES]: {
+    zhName: '功能',
+    enName: BloomNavEnum.FEATURES,
   },
-  [BloomNavEnum.PRICING]:{
-    zhName:'价格',
-    enName:BloomNavEnum.PRICING,
+  [BloomNavEnum.PRICING]: {
+    zhName: '价格',
+    enName: BloomNavEnum.PRICING,
   },
-  [BloomNavEnum.HELP]:{
-    zhName:'帮助',
-    enName:BloomNavEnum.HELP,
+  [BloomNavEnum.HELP]: {
+    zhName: '帮助',
+    enName: BloomNavEnum.HELP,
   },
-  [BloomNavEnum.CONTACT]:{
-    zhName:'联系我们',
-    enName:BloomNavEnum.CONTACT,
-  }
-
-}
+  [BloomNavEnum.CONTACT]: {
+    zhName: '联系我们',
+    enName: BloomNavEnum.CONTACT,
+  },
+};

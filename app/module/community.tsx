@@ -149,13 +149,11 @@ export default function Community() {
               onMouseLeave={() => videoMouseEvent(`video-cover-${video.id}`, 'leave')}
               style={{ transformOrigin: 'center center' }}
               className="video-preview group relative aspect-video w-full cursor-pointer overflow-hidden rounded-[10px] opacity-0 before:absolute before:inset-0 before:z-10 before:bg-black/40 before:transition-all before:ease-linear sm:hover:before:bg-black/0">
-      
               <Image src={video.cover} fill alt="cover" className="object-cover" />
             </div>
           ))}
         </div>
       </div>
-     
     </div>
   );
 }
@@ -212,7 +210,9 @@ function PCCommentsSlick({ className }: { className?: string }) {
                 <p className="text-xl text-[#333]/70">{item.extra}</p>
               </div>
             </div>
-            <div className="user-comments relative z-10 w-[600px] text-xl leading-[2em] text-[#333]">{item.comment}</div>
+            <div className="user-comments relative z-10 w-[600px] text-xl leading-[2em] text-[#333]">
+              {item.comment}
+            </div>
           </div>
         ))}
       </Slider>

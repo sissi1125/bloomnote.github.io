@@ -10,11 +10,6 @@ export default function CardList() {
   const { isIntersecting } = useInView(ref, { threshold: 0.6 });
   const [titleRef, animate] = useAnimate<HTMLParagraphElement>();
   const titleAnimation = useRef<Animation>();
-  const [showVideoModal, setShowVideoModal] = useState(false);
-  const [videoInfo, setVideoInfo] = useState({
-    src: '',
-    cover: '',
-  });
 
   const productAniCtrl = useGroup(
     {
@@ -64,13 +59,6 @@ export default function CardList() {
   const handleOnProductCardClick = (type: string) => {
     console.log(type);
     const videoInfo = mindtopiaDemoVideo.find((item) => item.type === type);
-    if (videoInfo) {
-      setVideoInfo({
-        cover: videoInfo.cover,
-        src: videoInfo.url,
-      });
-      setShowVideoModal(true);
-    }
   };
 
   return (
