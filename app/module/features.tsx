@@ -1,7 +1,6 @@
 'use client';
 import cn from 'clsx';
 import { EASING_FUNCTIONS, useAnimate, useGroup, useMotion } from 'ease-motion';
-import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 import DownloadButtonGroup from '../components/download-button-group';
 import FeatureAccordion, { MobileFeatureAccordion } from '../components/feature-accordion';
