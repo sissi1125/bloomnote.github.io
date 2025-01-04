@@ -13,6 +13,7 @@ import { useRouter } from 'next/navigation';
 
 import { BloomNavEnum } from './utils/bloomconfig';
 import Features from './module/features';
+import Scenes from './module/scenes';
 
 export default function App() {
   const [showEmailModal, setShowEmailModal] = useState(true);
@@ -38,6 +39,7 @@ export default function App() {
       </div>
       <div id={BloomNavEnum.FEATURES}>
         <Features />
+        <Scenes />
       </div>
       <div id={BloomNavEnum.PRICING}>
         <Pricing />
@@ -48,7 +50,7 @@ export default function App() {
       <div id={BloomNavEnum.CONTACT}>
         <Contact />
       </div>
-      <BackToTop />
+      {/* <BackToTop /> */}
       {/* <SuccessModal show={showSuccessModal} onClose={() => setShowSuccessModal(false)} /> */}
       {/* <EmailSubscribeModal
         show={showEmailModal}

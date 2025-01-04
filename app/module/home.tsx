@@ -73,12 +73,12 @@ export default function Home() {
         'h-fill-available': isRealSafari,
       })}>
       <div className="flex flex-col items-center justify-center px-10 text-[16px] text-[#333] sm:text-[20px] [&_p]:text-center">
-        <div
+        <h1
           // ref={brandNameRef}
-          className="text-[44px] font-[500] leading-[48px] tracking-[2px] sm:text-[90px] sm:tracking-[5px]">
-          Bloomnote
-        </div>
-        <div className="my-10 flex h-[90px] w-[90px] items-center justify-center rounded-[10px] ">
+          className="text-[44px] font-[500] leading-[48px] tracking-[1px] ">
+          Bloomnote - 如花般绽放，记录生活点滴
+        </h1>
+        <div className="my-[100px] flex h-[90px] w-[90px] items-center justify-center rounded-[10px] ">
           <Image ref={logoRef} src="/images/bloom-logo.png" alt="sun" width={72} height={72} />
         </div>
         <div className="">
@@ -91,12 +91,11 @@ export default function Home() {
       </div>
       <DownloadButtonGroup
         special
-        show={isIntersecting}
-        delay={isMobile ? 0.6 : 0.4}
+        show={true}
+        // delay={isMobile ? 0.6 : 0.4}
         className="absolute bottom-[108px] left-1/2 -translate-x-1/2 sm:bottom-[74px]"
       />
       <ScrollDownIndicator show />
-      {/* <BannerVideo posterUrl={posterUrl} url={videoUrl} /> */}
     </div>
   );
 }
