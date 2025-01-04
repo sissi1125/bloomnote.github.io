@@ -76,22 +76,7 @@ export default function CardList() {
         <ProductCard className="opacity-0" type="explore" onClick={() => handleOnProductCardClick('explore')} />
         <ProductCard className="opacity-0" type="mood-talk" onClick={() => handleOnProductCardClick('mood-talk')} />
       </div>
-      {/* <div className="absolute inset-0 -z-[1] hidden h-full w-full bg-black sm:block">
-        <Image
-          alt="bg"
-          fill
-          className="h-full w-full object-cover opacity-30"
-          src="https://appasset.xverse.cn/98/plane/1531df153dd44f1899001511b248d0fc/card-list-pc-bg.jpg"
-        />
-      </div>
-      <div className="absolute inset-0 -z-[1] block h-full w-full bg-black sm:hidden">
-        <Image
-          alt="bg"
-          fill
-          className="object-cover opacity-30 sm:block"
-          src="https://appasset.xverse.cn/98/plane/f81c1d015b8c43b3bac4a79c7e254c85/card-list-mobile-bg.jpg"
-        />
-      </div> */}
+      
     </div>
   );
 }

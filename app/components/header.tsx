@@ -30,7 +30,7 @@ const navList = [
 ];
 
 const pcNavItem = tv({
-  base: 'list-none whitespace-nowrap h-[64px] flex items-center text-[20px] text-[#333] cursor-pointer transition-all hover:hover-nav',
+  base: 'list-none whitespace-nowrap h-[64px] flex items-center text-[16px] text-[#333] cursor-pointer transition-all hover:hover-nav',
 });
 
 const logoItem = tv({
@@ -66,11 +66,11 @@ interface HeaderProps {
 export default function Header(props: HeaderProps) {
   const { onNavClick, onLogoClick } = props;
   const [expanded, setExpanded] = useState(false);
-  const [showStarted, setShowStarted] = useState(false);
+  // const [showStarted, setShowStarted] = useState(false);
   const [clientBody, setClientBody] = useState<HTMLElement | null>(null);
   const getStartBtnRef = useRef<HTMLDivElement>(null);
-  const { base: btnBase, list } = startBtn();
-  useClickOutSide(getStartBtnRef, () => setShowStarted(false));
+  // const { base: btnBase, list } = startBtn();
+  // useClickOutSide(getStartBtnRef, () => setShowStarted(false));
 
   const handleOnItemClick = (id: string) => {
     setExpanded(false);
@@ -81,9 +81,9 @@ export default function Header(props: HeaderProps) {
     setClientBody(document.body);
   }, []);
   return (
-    <header className="fixed left-0 top-0 z-[999] flex h-[64px] w-full items-center justify-between px-[100px] shadow-md backdrop-blur-[20px] sm:h-[80px] sm:justify-between">
+    <header className="fixed left-0 top-0 z-[999] flex h-[64px] w-full items-center justify-between px-[100px] shadow-md backdrop-blur-[20px] sm:justify-between">
       <div className={cn(logoItem())} onClick={onLogoClick}>
-        <Image className="mr-2" src="/images/bloom-logo.png" alt="sun" width={20} height={20} />
+        <Image className='mr-2' src="/images/bloom-logo.png" alt="sun" width={20} height={20} />
         <span className="font-extrabold text-[#333]">BLOOMNOTE</span>
       </div>
       <div className="mx-[36px] hidden items-center gap-x-[20px] sm:flex xl:mx-[88px] xl:gap-x-[40px]">

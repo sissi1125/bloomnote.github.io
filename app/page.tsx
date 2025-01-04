@@ -31,7 +31,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden bg-[#F9F4EF]">
       <Header onNavClick={scrollToSection} onLogoClick={() => scrollToSection('home')} />
       <div id={BloomNavEnum.HOME}>
         <Home />
