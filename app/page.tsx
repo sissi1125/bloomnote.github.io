@@ -14,6 +14,7 @@ import { useRouter } from 'next/navigation';
 import { BloomNavEnum } from './utils/bloomconfig';
 import Features from './module/features';
 import Scenes from './module/scenes';
+import React from 'react';
 
 export default function App() {
   const [showEmailModal, setShowEmailModal] = useState(true);

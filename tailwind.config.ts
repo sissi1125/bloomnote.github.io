@@ -1,3 +1,4 @@
+import { nextui } from '@nextui-org/theme';
 import type { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
 const config: Config = {
@@ -5,6 +6,7 @@ const config: Config = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './node_modules/@nextui-org/theme/dist/components/navbar.js',
   ],
   theme: {
     extend: {
@@ -53,20 +55,18 @@ const config: Config = {
     plugin(function ({ addComponents }) {
       addComponents({
         '.hover-nav': {
-          // 'text-shadow': '0 0 6px #666',
-          'font-weight': '700',
-        },
-        '.home-text-shadow': {
-          'text-shadow': '4px 4px 20px rgba(28, 28, 28, 0.30)',
+          // 'text-shadow': '0 0 6px #666',font-weight': '700,},'.home-text-shadow': {
+          'text-shadow': '4px 4px 20px rgba(28,28,28,0.30)',
         },
         '.home-text-shadow-mobile': {
-          'text-shadow': '1.6px 1.6px 8px rgba(28, 28, 28, 0.30)',
+          'text-shadow': '1.6px 1.6px 8px rgba(28,28,28,0.30)',
         },
         '.button-text-shadow': {
-          'text-shadow': '2.8px 2.8px 7px rgba(18, 126, 0, 0.25)',
+          'text-shadow': '2.8px 2.8px 7px rgba(18,126,0,0.25)',
         },
       });
     }),
+    nextui(),
   ],
 };
 export default config;

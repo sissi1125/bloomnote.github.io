@@ -6,7 +6,6 @@ import { useGroup } from 'ease-motion';
 import ExpandingScene from './../components/expanding-scene';
 import { sceneConfig } from '../utils/config';
 import { useInView, useMobile } from '../hooks';
-import BloomSwiper from '../components/bloom-swiper';
 import SceneCarousel from '../components/scene-carousel';
 
 export default function Scenes() {
@@ -73,8 +72,6 @@ export default function Scenes() {
       <div className="scene-carousel-box mt-8 block">
         <SceneCarousel scenes={sceneConfig.light} theme={'light'} />
       </div>
-
-     
     </div>
   );
 }
