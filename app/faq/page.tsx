@@ -5,7 +5,7 @@ import React from 'react';
 import {  Navbar,   NavbarBrand,   NavbarContent,   NavbarItem,   NavbarMenuToggle,  NavbarMenu,  NavbarMenuItem} from "@nextui-org/navbar";
 import Link from 'next/link';
 
-export default function App() {
+export default function Faq() {
   const [showEmailModal, setShowEmailModal] = useState(true);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 

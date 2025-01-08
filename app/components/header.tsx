@@ -24,7 +24,7 @@ const navList = [
     id: BloomNavEnum.HELP,
   },
   {
-    label: '联系我们',
+    label: '更新',
     id: BloomNavEnum.CONTACT,
   },
 ];
@@ -66,11 +66,7 @@ interface HeaderProps {
 export default function Header(props: HeaderProps) {
   const { onNavClick, onLogoClick } = props;
   const [expanded, setExpanded] = useState(false);
-  // const [showStarted, setShowStarted] = useState(false);
   const [clientBody, setClientBody] = useState<HTMLElement | null>(null);
-  const getStartBtnRef = useRef<HTMLDivElement>(null);
-  // const { base: btnBase, list } = startBtn();
-  // useClickOutSide(getStartBtnRef, () => setShowStarted(false));
 
   const handleOnItemClick = (id: string) => {
     setExpanded(false);
@@ -93,26 +89,7 @@ export default function Header(props: HeaderProps) {
           </li>
         ))}
       </div>
-      {/* <div role="button" ref={getStartBtnRef} className={btnBase()} onClick={() => setShowStarted(!showStarted)}>
-        <span className="text-lg text-[#333] group-hover:[text-shadow:0_0_6px_#333]">GET STARTED</span>
-        <div className={list({ show: showStarted })}>
-          <div className="pointer-events-none absolute left-px top-px h-[calc(100%_-_2px)] w-[calc(100%_-_2px)] rounded-[15px] bg-gradient-button opacity-20"></div>
-          <a
-            className="relative flex h-14 items-center justify-center px-4 transition-[text-shadow] after:absolute after:bottom-0 after:block after:h-px after:w-[calc(100%_-32px)] after:bg-gradient-divider hover:[text-shadow:0_0_6px_#333]"
-            target="_blank"
-            href={mediaConfig.appDownloadMeta}
-            rel="noreferrer">
-            META QUEST
-          </a>
-          <a
-            target="_blank"
-            href={mediaConfig.appDownloadApple}
-            className="flex h-14 items-center justify-center px-4 transition-[text-shadow] hover:[text-shadow:0_0_6px_#333]"
-            rel="noreferrer">
-            VISION PRO
-          </a>
-        </div>
-      </div> */}
+     
       <ToggleButton onClick={() => setExpanded(!expanded)} isOpen={expanded} />
       {clientBody &&
         createPortal(

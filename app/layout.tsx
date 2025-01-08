@@ -2,6 +2,18 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 import { Merriweather } from 'next/font/google';
+import localFont from 'next/font/local'
+
+// const avenirNext = localFont({
+//   src: [
+//     {
+//       path: '../../public/fonts/AvenirNextLTPro-MediumCn.woff',
+//       weight: '400',
+//       style: 'normal',
+//     },
+//   ],
+//   variable: '--font-avenir-next', // 可选：用于 CSS 变量
+// });
 
 const openSans = Merriweather({
   subsets: ['latin'],

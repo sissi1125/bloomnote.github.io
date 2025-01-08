@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 const toggleBtnStyle = tv({
   slots: {
     menu: 'sm:hidden flex flex-col justify-center items-center size-[36px] transition-colors z-20',
-    menuItem: 'block w-[20px] h-[1px] rounded-[6px] bg-white mb-[6px] last:mb-0',
+    menuItem: 'block w-[20px] h-[1px] rounded-[6px] bg-[#000] mb-[6px] last:mb-0',
   },
 });
 interface ToggleButtonProps {

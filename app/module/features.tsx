@@ -7,6 +7,7 @@ import FeatureAccordion, { MobileFeatureAccordion } from '../components/feature-
 import ScrollDownIndicator from '../components/scrollDownIndicator';
 import { useInView, useMobile } from '../hooks';
 import { mediaConfig } from '../utils/config';
+import Slider from 'react-slick';
 
 export default function Features() {
   const ref = useRef<HTMLDivElement>(null);
@@ -91,7 +92,7 @@ export default function Features() {
     <div ref={ref} className="relative flex h-screen flex-col justify-center">
       <div className="mx-auto flex w-full items-center justify-between lg:max-w-[1000px] xl:max-w-[1250px]">
         <div ref={sliderRef} className="cube-slider relative hidden h-[248px] w-[331px] rounded-xl opacity-0 sm:block">
-          {/* <Slider {...settings}>
+          <Slider {...settings}>
             {mindtopiaSlickImg.map((item) => (
               <div key={item.id} className="relative h-[342px] w-[331px] overflow-hidden rounded-xl p-4 outline-none">
                 <p className="relative z-10 max-w-[188px] text-lg leading-5 text-[#333]">
@@ -102,7 +103,7 @@ export default function Features() {
                 <Image src={item.url} alt="image" fill />
               </div>
             ))}
-          </Slider> */}
+          </Slider>
           <div className="text-[28px] text-[#333]">
             <p>Join our community on</p>
             <p>Discord to</p>

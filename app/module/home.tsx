@@ -9,7 +9,6 @@ import { useHeartBeatReport, useInView, useMobile } from '../hooks';
 import { isSafari } from '../utils/utils';
 
 export default function Home() {
-  const lineRef = useRef<HTMLDivElement>(null);
   const brandNameRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLImageElement>(null);
   const homeRef = useRef<HTMLDivElement>(null);
@@ -17,51 +16,6 @@ export default function Home() {
   const isMobile = useMobile();
   const [isRealSafari, setIsRealSafari] = useState(false);
   const heartBeatReport = useHeartBeatReport(() => {}, 2000);
-  const ctrl = useMultiple<HTMLDivElement>(
-    {
-      baseOptions: {
-        duration: 1000,
-        fill: 'both',
-      },
-      config: [
-        {
-          ref: brandNameRef,
-          keyframes: [
-            { opacity: 0, transform: 'translateY(-20px)', offset: 0 },
-            { opacity: 1, transform: 'translateY(0)', offset: 1 },
-          ],
-          options: {
-            delay: 200,
-          },
-        },
-        {
-          ref: logoRef,
-          keyframes: [
-            { opacity: 0, transform: 'rotate(0deg)', offset: 0 },
-            { opacity: 1, transform: 'rotate(180deg)', offset: 1 },
-          ],
-        },
-        // {
-        //   ref: lineRef,
-        //   keyframes: [
-        //     { opacity: 1, transform: isMobile ? 'translateY(-15px)' : 'translateY(-32px)', offset: 0.4 },
-        //     { opacity: 1, transform: isMobile ? 'translateY(-13px)' : 'translateY(-26px)' },
-        //   ],
-        // },
-      ],
-    },
-    [isMobile],
-  );
-
-  useEffect(() => {
-    if (isIntersecting) {
-      ctrl.play();
-      heartBeatReport.report();
-    } else {
-      ctrl.reverse();
-      heartBeatReport.clear();
-    }
-  }, [isIntersecting]);
 
   useEffect(() => {
     setIsRealSafari(isSafari());
@@ -69,32 +23,39 @@ export default function Home() {
   return (
     <div
       ref={homeRef}
-      className={cn('flex h-screen w-screen flex-col justify-center overflow-hidden', {
+      className={cn('flex h-screen w-screen flex-col overflow-hidden pt-20', {
         'h-fill-available': isRealSafari,
       })}>
-      <div className="flex flex-col items-center justify-center px-10 text-[16px] text-[#333] sm:text-[20px] [&_p]:text-center">
-        <h1
-          // ref={brandNameRef}
-          className="text-[44px] font-[500] leading-[48px] tracking-[1px] ">
-          Bloomnote - 如花般绽放，记录生活点滴
-        </h1>
-        <div className="my-[100px] flex h-[90px] w-[90px] items-center justify-center rounded-[10px] ">
-          <Image ref={logoRef} src="/images/bloom-logo.png" alt="sun" width={72} height={72} />
+      <div className="flex flex-row w-full h-[60vh] justify-around px-10 mt-5 text-[16px] text-[#333] sm:text-[20px] [&_p]:text-center">
+        <div className='felx flex-col w-[50%] px-5'>
+          <h1
+            className="text-[44px] font-[500] leading-[48px] tracking-[1px] mt-[150px]">
+            如花般绽放，记录生活点滴
+          </h1>
+          <DownloadButtonGroup
+            special
+            show={true}
+            className="mt-[120px] left-0"
+          />
         </div>
-        <div className="">
+        
+        <div style={{ width: '50%', height: 'auto', position: 'relative' }}>
+          <Image
+            src="/images/Group@3x.png"
+            alt="sun"
+            width={580}
+            height={600}
+            style={{ maxWidth: '100%', height: 'auto', objectFit: 'contain' }}
+          />
+        </div>
+        {/* <div className="">
           <p>Bloomnote是一款功能强大的笔记应用</p>
           <p>应用提供多种模块，包括文本、表格、语音、心情、文件、链接预览等，满足您多样化的记录需求。</p>
           <p>您可以通过自定义样式，打造独特的笔记风格。</p>
           <p>借助时间线功能，轻松按日期组织笔记和日记，使信息管理更加高效和便捷。</p>
           <p>无论是工作还是生活，Bloomnote都是您的理想选择。</p>
-        </div>
+        </div> */}
       </div>
-      <DownloadButtonGroup
-        special
-        show={true}
-        // delay={isMobile ? 0.6 : 0.4}
-        className="absolute bottom-[108px] left-1/2 -translate-x-1/2 sm:bottom-[74px]"
-      />
       <ScrollDownIndicator show />
     </div>
   );

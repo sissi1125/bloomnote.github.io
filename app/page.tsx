@@ -1,7 +1,6 @@
 'use client';
 import { useCallback, useState } from 'react';
 import BackToTop from './components/back-to-top';
-// import EmailSubscribeModal from './components/email-subscribe-modal';
 import Header from './components/header';
 import { useDarkMode } from './hooks';
 import Contact from './module/contact';
@@ -33,13 +32,13 @@ export default function App() {
   }, []);
 
   return (
-    <div className="overflow-x-hidden bg-[#F9F4EF]">
+    <div className="overflow-x-hidden">
       <Header onNavClick={scrollToSection} onLogoClick={() => scrollToSection('home')} />
       <div id={BloomNavEnum.HOME}>
         <Home />
       </div>
       <div id={BloomNavEnum.FEATURES}>
-        <Features />
+        {/* <Features /> */}
         <Scenes />
       </div>
       <div id={BloomNavEnum.PRICING}>

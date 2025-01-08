@@ -9,7 +9,11 @@ const config: Config = {
     './node_modules/@nextui-org/theme/dist/components/navbar.js',
   ],
   theme: {
+
     extend: {
+      fontFamily: {
+        avenir: ['var(--font-avenir-next)', 'sans-serif'],
+      },
       zIndex: {
         modal: '999',
       },
