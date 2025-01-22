@@ -1,16 +1,15 @@
-
 import { useState } from "react"
 import { motion } from "framer-motion"
 
 interface DeviceSwitchProps {
   onToggle: (isIpad: boolean) => void
+  isIpad: boolean
 }
 
-export default function DeviceSwitch({ onToggle }: DeviceSwitchProps) {
-  const [isIpad, setIsIpad] = useState(false)
+export default function DeviceSwitch({ onToggle, isIpad }: DeviceSwitchProps) {
+  //const [isIpad, setIsIpad] = useState(false)
 
   const handleToggle = (newIsIpad: boolean) => {
-    setIsIpad(newIsIpad)
     onToggle(newIsIpad)
   }
 
