@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar isIpad={isIpad} />
+      <Navbar />
       <main className="flex-grow pt-16">
         <Hero isIpad={isIpad} setIsIpad={setIsIpad} />
         <Features isIpad={isIpad} />
