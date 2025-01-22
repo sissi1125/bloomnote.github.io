@@ -1,65 +1,20 @@
-'use client';
-import { useCallback, useState } from 'react';
-import BackToTop from './components/back-to-top';
-import Header from './components/header';
-import { useDarkMode } from './hooks';
-import Contact from './module/contact';
-import Home from './module/home';
-import Pricing from './module/pricing';
-import Help from './module/help';
-import Reviews from './module/reviews';
-import { useRouter } from 'next/navigation';
+import Navbar from '../components/Navbar'
+import Hero from '../components/Hero'
+import Features from '../components/Features'
+import Pricing from '../components/Pricing'
+import Footer from '../components/Footer'
 
-import { BloomNavEnum } from './utils/bloomconfig';
-import Features from './module/features';
-import Scenes from './module/scenes';
-import React from 'react';
-
-export default function App() {
-  const [showEmailModal, setShowEmailModal] = useState(true);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
-
-  const router = useRouter();
-
-  const navigateToHash = (hash: string) => {
-    router?.push(`#${hash}`);
-  };
-
-  const scrollToSection = useCallback((id: string) => {
-    navigateToHash(id);
-    // const section = document.getElementById(id);
-    // section?.scrollIntoView({ behavior: 'smooth' });
-  }, []);
-
+export default function Home() {
   return (
-    <div className="overflow-x-hidden">
-      <Header onNavClick={scrollToSection} onLogoClick={() => scrollToSection('home')} />
-      <div id={BloomNavEnum.HOME}>
-        <Home />
-      </div>
-      <div id={BloomNavEnum.FEATURES}>
-        {/* <Features /> */}
-        <Scenes />
-      </div>
-      <div id={BloomNavEnum.PRICING}>
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <main className="flex-grow pt-16">
+        <Hero />
+        <Features />
         <Pricing />
-      </div>
-      <div id={BloomNavEnum.HELP}>
-        <Help />
-      </div>
-      <div id={BloomNavEnum.CONTACT}>
-        <Contact />
-      </div>
-      {/* <BackToTop /> */}
-      {/* <SuccessModal show={showSuccessModal} onClose={() => setShowSuccessModal(false)} /> */}
-      {/* <EmailSubscribeModal
-        show={showEmailModal}
-        onClose={() => setShowEmailModal(false)}
-        onSuccess={() => {
-          setShowEmailModal(false);
-          setShowSuccessModal(true);
-        }}
-      /> */}
+      </main>
+      <Footer />
     </div>
-  );
+  )
 }
+
