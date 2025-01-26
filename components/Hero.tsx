@@ -14,34 +14,52 @@ export default function Hero({ isIpad, setIsIpad }: HeroProps) {
   }
 
   return (
-    <div className="bg-white">
-      <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h1 className="text-5xl font-bold text-gray-900 sm:text-6xl lg:text-7xl">Where every note blooms</h1>
+    // <div className="bg-white">
+      <div className="w-[80%] max-w-[1000px] mx-auto py-16 px-8 sm:px-12 lg:px-16">
+          <h1 className="text-5xl font-bold text-gray-900 sm:text-6xl lg:text-7xl text-center">Where every note blooms</h1>
           <DeviceSwitch onToggle={handleToggle} isIpad={isIpad} />
-          <div className="mt-12 relative">
-            <Image
-              src={isIpad ? "/images/ipad-hero.png" : "/images/ipx-hero.png"}
-              alt={`Bloomnote app interface showcase for ${isIpad ? "iPad" : "iPhone"}`}
-              width={isIpad ? 1200 : 1080}
-              height={isIpad ? 900 : 220}
-              className="mx-auto"
-              priority
-            />
+        
+          <div className="mt-12 relative max-w-[1000px] mx-auto">
+            <div className="relative">
+              {/* 预加载 iPad 图片 */}
+              <div className={`${!isIpad && 'hidden'}`}>
+                <Image
+                  src="/images/ipad-hero.png"
+                  alt="Bloomnote app interface showcase for iPad"
+                  width={1200}
+                  height={900}
+                  className="w-full h-auto transition-opacity duration-300"
+                  style={{ maxWidth: '100%' }}
+                  priority
+                />
+              </div>
+              {/* 预加载 iPhone 图片 */}
+              <div className={`${isIpad && 'hidden'}`}>
+                <Image
+                  src="/images/ipx-hero.png"
+                  alt="Bloomnote app interface showcase for iPhone"
+                  width={1080}
+                  height={220}
+                  
+                  className="w-full h-auto transition-opacity duration-300"
+                  style={{ maxWidth: '100%' }}
+                  priority
+                />
+              </div>
+            </div>
           </div>
-          <div className="mt-12">
+          <div className="mt-12 text-center">
             <Link
               href="https://apps.apple.com/app/bloomnote"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block transition-transform hover:scale-105"
             >
-              <Image src="/images/ipx-appstore.png" alt="Download on the App Store" width={200} height={67} priority />
+              <Image src="/images/ipx-appstore.png" alt="Download on the App Store" width={170} height={67} priority />
             </Link>
           </div>
-        </div>
       </div>
-    </div>
+    // </div>
   )
 }
 

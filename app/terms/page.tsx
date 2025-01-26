@@ -28,7 +28,7 @@ export default function TermsAndConditions() {
 
       {/* Add the rest of the terms and conditions content here */}
       
-      <h2 className="text-2xl font-semibold mt-6 mb-4">12. Contact Us</h2>
+      <h2 className="text-2xl font-semibold mt-6 mb-4">3. Contact Us</h2>
       <p className="mb-4">If you have any questions about these Terms or the App, please contact us at:</p>
       <p className="mb-4">Email: feedback.bloomnote@gmail.com</p>
       <p className="mb-4">Thank you for choosing Bloomnote. We're excited to help you capture and organize your ideas!</p>

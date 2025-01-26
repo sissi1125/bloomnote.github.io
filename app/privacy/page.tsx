@@ -28,7 +28,7 @@ export default function PrivacyPolicy() {
 
       {/* Add the rest of the privacy policy content here */}
       
-      <h2 className="text-2xl font-semibold mt-6 mb-4">7. Contact Us</h2>
+      <h2 className="text-2xl font-semibold mt-6 mb-4">2. Contact Us</h2>
       <p className="mb-4">If you have questions or concerns about this Privacy Policy, please contact us at:</p>
       <p className="mb-4">Email: feedback.bloomnote@gmail.com</p>
       <p className="mb-4">Thank you for trusting Bloomnote. We are committed to safeguarding your privacy while providing you with an exceptional experience.</p>

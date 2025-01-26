@@ -3,7 +3,7 @@ import Link from 'next/link'
 export default function Footer() {
   return (
     <footer className="bg-white py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-[80%] max-w-[1200px] mx-auto px-8 sm:px-12 lg:px-16">
         {/* Support Section */}
         <div id="support" className="text-center space-y-4">
           <h2 className="text-4xl font-bold text-[#2D3142]">
@@ -56,7 +56,7 @@ export default function Footer() {
             </div>
           </nav>
           <p className="mt-8 text-center text-base text-gray-400">
-            &copy; 2023 Bloomnote, Inc. All rights reserved.
+            &copy; 2025 Bloomnote, Inc. All rights reserved.
           </p>
         </div>
       </div>
