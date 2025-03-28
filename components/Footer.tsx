@@ -5,16 +5,46 @@ export default function Footer() {
     <footer className="bg-white py-16">
       <div className="w-[80%] max-w-[1200px] mx-auto px-8 sm:px-12 lg:px-16">
         {/* Support Section */}
-        <div id="support" className="text-center space-y-4">
-          <h2 className="text-4xl font-bold text-[#2D3142]">
+        <div id="support" className="text-center">
+          <h2 className="text-4xl font-bold text-[#2D3142] mb-8">
             Support
           </h2>
-          <div className="text-xl text-[#2D3142] space-y-1">
-            <p>For any questions,</p>
-            <p>email us at: feedback.bloomnote@gmail.com</p>
+          <div className="grid grid-cols-2 gap-6 max-w-[600px] mx-auto">
+            {/* Email */}
+            <div className="p-6 border border-gray-200 rounded-lg shadow-md flex flex-col items-center">
+              <div className='flex items-center'>
+                <img src="/images/gmaillogo.png" alt="Email Logo" className="w-5 h-5 mr-2" />
+                <p className="text-xl font-semibold text-[#2D3142]">Email</p>
+              </div>
+              <p className="text-lg text-[#2D3142]">feedback.bloomnote@gmail.com</p>
+            </div>
+            {/* Weibo */}
+            <div className="p-6 border border-gray-200 rounded-lg shadow-md flex flex-col items-center">
+              <div className='flex items-center'>
+                <img src="/images/weibologo.png" alt="Weibo Logo" className="w-5 h-5 mr-2" />
+                <p className="text-xl font-semibold text-[#2D3142]">Weibo</p>
+              </div>
+              <p className="text-lg text-[#2D3142]">@YourWeiboID</p>
+            </div>
+            {/* Xiaohongshu */}
+            <div className="p-6 border border-gray-200 rounded-lg shadow-md flex flex-col items-center">
+              <div className='flex items-center'>
+                <img src="/images/xhslogo.png" alt="Xiaohongshu Logo" className="w-5 h-5 mr-2" />
+                <p className="text-xl font-semibold text-[#2D3142]">RedBook</p>
+              </div>
+              <img src="/path-to-xiaohongshu-qr.png" alt="Xiaohongshu QR Code" className="mt-2 mx-auto w-32 h-32" />
+            </div>
+            {/* WeChat */}
+            <div className="p-6 border border-gray-200 rounded-lg shadow-md flex flex-col items-center">
+              <div className='flex items-center'>
+                <img src="/images/wechatlogo.png" alt="WeChat Logo" className="w-5 h-5 mr-2" />
+                <p className="text-xl font-semibold text-[#2D3142]">WeChat</p>
+              </div>
+              <img src="/path-to-wechat-qr.png" alt="WeChat QR Code" className="mt-2 mx-auto w-32 h-32" />
+            </div>
           </div>
         </div>
-        
+
         {/* Terms and Privacy */}
         <div className="mt-32 text-center space-y-4">
           <Link href="/terms" className="text-2xl text-[#2D3142] hover:underline">
@@ -63,4 +93,3 @@ export default function Footer() {
     </footer>
   )
 }
-
