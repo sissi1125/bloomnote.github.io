@@ -8,7 +8,7 @@ interface FeaturesProps {
 export default function Features({ isIpad }: FeaturesProps) {
   return (
     <div id="features" className="bg-white py-24">
-      <div className="w-[80%] max-w-[1200px] mx-auto px-8 sm:px-12 lg:px-16">
+      <div className="w-[80%] max-w-[1200px] mx-auto sm:px-12 lg:px-16">
         <div className="space-y-24">
           {/* First Row */}
           <div className="grid md:grid-cols-2 gap-12 items-center">

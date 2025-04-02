@@ -56,7 +56,7 @@ const features = [
 export default function Pricing() {
   return (
     <div id="pricing" className="bg-gray-100 py-24">
-      <div className="w-[80%] max-w-[1000px] mx-auto px-8 sm:px-12 lg:px-16">
+      <div className="w-[80%] max-w-[1000px] mx-auto sm:px-12 lg:px-16">
         <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">
           Price
         </h2>

@@ -3,13 +3,13 @@ import Link from 'next/link'
 export default function Footer() {
   return (
     <footer className="bg-white py-16">
-      <div className="w-[80%] max-w-[1200px] mx-auto px-8 sm:px-12 lg:px-16">
+      <div className="w-[80%] max-w-[1200px] mx-auto sm:px-12 lg:px-16">
         {/* Support Section */}
         <div id="support" className="text-center">
           <h2 className="text-4xl font-bold text-[#2D3142] mb-8">
             Support
           </h2>
-          <div className="grid grid-cols-2 gap-6 max-w-[600px] mx-auto">
+          <div className=" xs:flex xs:flex-col sm:grid sm:grid-cols-2 gap-6 max-w-[600px] mx-auto">
             {/* Email */}
             <div className="p-6 border border-gray-200 rounded-lg shadow-md flex flex-col items-center">
               <div className='flex items-center'>

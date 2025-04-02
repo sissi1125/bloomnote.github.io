@@ -15,7 +15,7 @@ export default function Hero({ isIpad, setIsIpad }: HeroProps) {
 
   return (
     // <div className="bg-white">
-      <div className="w-[80%] max-w-[1000px] mx-auto py-16 px-8 sm:px-12 lg:px-16">
+      <div className="w-[80%] max-w-[1000px] mx-auto py-16 sm:px-12 lg:px-16">
           <h1 className="text-5xl font-bold text-gray-900 sm:text-6xl lg:text-7xl text-center">Where every note blooms</h1>
           <DeviceSwitch onToggle={handleToggle} isIpad={isIpad} />
         
