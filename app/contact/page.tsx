@@ -13,7 +13,7 @@ export default function Contact() {
                 width={28}
                 height={28}
             />
-          <h1 className="text-2xl font-bold">Bloomnote不录</h1>
+          <h1 className="text-2xl font-bold text-gray-600">Bloomnote不录</h1>
           </div>
           <div>
             {/* <p className="text-sm text-gray-500">独立开发者 @ 自由工作室</p> */}
