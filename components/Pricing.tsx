@@ -8,12 +8,12 @@ const features = [
   },
   {
     name: 'Advanced Block: Health, Weather, Sketch, Countdown, Mood, Location, Link',
-    free: false,
+    free: true,
     pro: true
   },
   {
     name: 'Nested Link',
-    free: false,
+    free: true,
     pro: true
   },
   {
@@ -23,7 +23,7 @@ const features = [
   },
   {
     name: 'Export to: Txt, PDF, Image, RTF, Markdown, Html',
-    free: true,
+    free: false,
     pro: true
   },
   {
@@ -48,7 +48,7 @@ const features = [
   },
   {
     name: 'Voice Memo',
-    free: false,
+    free: true,
     pro: true
   }
 ]
@@ -88,6 +88,9 @@ export default function Pricing() {
               <span className="bg-[#FF770E] text-white text-sm px-2 py-0.5 rounded">
                 Pro
               </span>
+              <span className="text-[#FF770E] text-2xl font-bold px-2 py-0.5 rounded italic">
+                $2.99/month
+              </span>
             </h3>
             <ul className="space-y-4">
               {features.map((feature) => (
@@ -98,6 +101,7 @@ export default function Pricing() {
                   <span className="text-base text-gray-900">
                     {feature.pro === true ? feature.name : feature.pro || feature.name}
                   </span>
+                  
                 </li>
               ))}
             </ul>
