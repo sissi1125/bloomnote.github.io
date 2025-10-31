@@ -1,6 +1,5 @@
 "use client"
 
-import { useState } from "react"
 import { motion } from "framer-motion"
 
 interface DeviceSwitchProps {
@@ -9,8 +8,6 @@ interface DeviceSwitchProps {
 }
 
 export default function DeviceSwitch({ onToggle, isIpad }: DeviceSwitchProps) {
-  //const [isIpad, setIsIpad] = useState(false)
-
   const handleToggle = (newIsIpad: boolean) => {
     onToggle(newIsIpad)
   }
@@ -33,9 +30,7 @@ export default function DeviceSwitch({ onToggle, isIpad }: DeviceSwitchProps) {
             iPhone
           </button>
           <button
-            onClick={() => {
-              console.log("iPad clicked")
-              handleToggle(true)}}
+            onClick={() => handleToggle(true)}
             className={`px-6 py-2 text-sm font-medium rounded-full relative z-10 transition-colors duration-200 ${
               isIpad ? "text-white" : "text-gray-700"
             }`}

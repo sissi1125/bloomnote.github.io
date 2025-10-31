@@ -9,6 +9,12 @@ export const metadata: Metadata = {
     shortcut: '/favicon.ico?v=2',
     apple: '/images/appIcon.png?v=2',
   },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
 }
 
 export default function RootLayout({
@@ -18,7 +24,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body>{children}</body>
+      <body className="overflow-x-hidden">
+        <div className="w-full max-w-[100vw] mx-auto overflow-x-hidden">
+          {children}
+        </div>
+      </body>
     </html>
   )
 }

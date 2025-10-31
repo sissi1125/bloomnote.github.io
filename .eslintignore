@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+.next/
+out/
+build/
+dist/
+
+# Config files
+*.config.js
+*.config.ts
+
+# Generated files
+next-env.d.ts
+
+# Public assets
+public/
+

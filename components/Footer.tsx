@@ -3,7 +3,7 @@ import Link from 'next/link'
 export default function Footer() {
   return (
     <footer className="bg-white py-16">
-      <div className="w-[80%] max-w-[1200px] mx-auto px-8 sm:px-12 lg:px-16">
+      <div className="w-[80%] max-w-[1200px] mx-auto px-8 sm:px-12 lg:px-16 sm:w-[100%]">
         {/* Support Section */}
         <div id="support" className="text-center space-y-4">
           <h2 className="text-4xl font-bold text-[#2D3142]">

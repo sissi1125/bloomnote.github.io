@@ -7,7 +7,7 @@ export default function Contact() {
         <div className="flex flex-col items-center space-y-3">
           
           <div className="flex h-fit items-center space-x-2">
-    <Image
+            <Image
                 src="/images/appIcon.png?v=2" // 替换为你的头像路径
                 alt="bloomnote"
                 width={28}

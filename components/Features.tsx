@@ -8,7 +8,7 @@ interface FeaturesProps {
 export default function Features({ isIpad }: FeaturesProps) {
   return (
     <div id="features" className="bg-white py-24">
-      <div className="w-[80%] max-w-[1200px] mx-auto px-8 sm:px-12 lg:px-16">
+      <div className="w-[90%] max-w-[1200px] mx-auto px-4 sm:px-12 lg:px-16 sm:w-[100%]">
         <div className="space-y-24">
           {/* First Row */}
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -19,6 +19,7 @@ export default function Features({ isIpad }: FeaturesProps) {
                 width={isIpad ? 720 : 540}
                 height={isIpad ? 480 : 360}
                 className="mx-auto"
+                sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 500px"
               />
             </div>
             <div className="order-1 md:order-2">
@@ -74,6 +75,7 @@ export default function Features({ isIpad }: FeaturesProps) {
                 width={isIpad ? 800 : 780}
                 height={isIpad ? 533 : 684}
                 className="mx-auto"
+                sizes="(max-width: 640px) 90vw, (max-width: 1024px) 60vw, 700px"
               />
             </div>
             <div className="order-1 md:order-2">

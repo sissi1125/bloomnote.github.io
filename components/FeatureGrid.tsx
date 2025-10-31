@@ -1,15 +1,10 @@
 import Image from 'next/image'
-import { useEffect } from 'react'
 
 export default function FeatureGrid(props: { isIpad: boolean }) {
   const { isIpad } = props
 
-  useEffect(() => {
-    console.log('isIpad', isIpad)
-  }, [isIpad])
-
   return (
-    <div className="max-w-5xl flex justify-center mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="max-w-5xl flex justify-center mx-auto px-4 lg:px-8 lg:py-12 sm:py-0 sm:px-6 ">
       <div className="flex flex-col sm:flex-row gap-2">
         {/* Left Column */}
         <div className="flex-1 flex flex-col gap-1">

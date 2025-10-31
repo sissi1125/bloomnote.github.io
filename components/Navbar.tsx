@@ -5,10 +5,6 @@ import Image from "next/image"
 import { useEffect, useState } from "react"
 import { Menu, X } from "lucide-react"
 
-interface NavbarProps {
-  isIpad: boolean
-}
-
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -43,11 +39,11 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-4">
-        <div className="flex items-center justify-between h-16 shadow-lg rounded-full px-4 sm:px-8 py-2 bg-white">
+        <div className="flex items-center justify-between h-16 shadow-2xl rounded-full px-4 sm:px-8 py-2 bg-white/90 backdrop-blur" style={{ boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.2)' }}>
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-3">
               <Image src="/images/appIcon.png?v=2" alt="Bloomnote Logo" width={24} height={24} />
-              <span className="text-base font-medium text-gray-900">Bloomnote</span>
+              <span className="text-xl font-bold text-gray-900">Bloomnote</span>
             </Link>
           </div>
           <div className="hidden sm:flex sm:space-x-12">
@@ -64,7 +60,8 @@ export default function Navbar() {
           <div className="sm:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600"
+              aria-label="Toggle navigation menu"
+              className="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600 h-10 w-10 flex items-center justify-center rounded-md"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
