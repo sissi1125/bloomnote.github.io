@@ -46,7 +46,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 shadow-lg rounded-full px-4 sm:px-8 py-2 bg-white">
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-3">
-              <Image src="/images/appIcon.png" alt="Bloomnote Logo" width={24} height={24} />
+              <Image src="/images/appIcon.png?v=2" alt="Bloomnote Logo" width={24} height={24} />
               <span className="text-base font-medium text-gray-900">Bloomnote</span>
             </Link>
           </div>
