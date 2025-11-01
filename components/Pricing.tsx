@@ -69,9 +69,9 @@ export default function Pricing() {
             </h3>
             <ul className="space-y-4">
               {features.map((feature) => (
-                <li key={feature.name} className="flex items-start gap-3">
-                  <div className="h-5 min-w-6 rounded-md border-2 border-gray-300 flex items-center justify-center">
-                    {feature.free && <Check className="h-3.5 w-3.5 text-theme" />}
+                <li key={feature.name} className="flex justify-start items-center gap-3 ">
+                  <div className="h-5 min-w-5 rounded-md border-2 border-gray-300 flex items-center justify-center">
+                    {feature.free && <Check className="h-3.5 w-3.5 text-[#537dcf]" />}
                   </div>
                   <span className={`text-base ${feature.free ? 'text-gray-900' : 'text-gray-500'}`}>
                     {feature.free === true ? feature.name : feature.free || feature.name}
@@ -89,15 +89,15 @@ export default function Pricing() {
               </span>
               </span>
               
-              <span className="text-theme text-2xl font-bold py-0.5 rounded italic">
+              <span className="text-highlight text-2xl font-bold py-0.5 rounded italic">
                 $2.99/month
               </span>
             </h3>
             <ul className="space-y-4">
               {features.map((feature) => (
-                <li key={feature.name} className="flex items-start gap-3">
+                <li key={feature.name} className="flex justify-start items-center gap-3">
                   <div className="h-5 min-w-5 rounded-md border-2 border-gray-300 flex items-center justify-center">
-                    <Check className="h-3.5 w-3.5 text-theme" />
+                    <Check className="h-3.5 w-3.5 text-[#537dcf]" />
                   </div>
                   <span className="text-base text-gray-900">
                     {feature.pro === true ? feature.name : feature.pro || feature.name}

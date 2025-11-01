@@ -6,10 +6,10 @@
 export const colors = {
   // 主题色 - 橙色
   primary: {
-    DEFAULT: '#FF770E',
-    hover: '#e6690d',
-    light: '#ff8a33',
-    dark: '#cc5f0b',
+    DEFAULT: '#3b465c',
+    hover: '#2a3447',
+    light: '#3b465c',
+    dark: '#2a3447',
   },
   
   // 次要颜色
@@ -40,6 +40,13 @@ export const colors = {
     error: '#ef4444',
     warning: '#f59e0b',
     info: '#3b82f6',
+  },
+
+  highlight: {
+    DEFAULT: '#ff770e',
+    hover: '#e6690d',
+    light: '#ff8a33',
+    dark: '#cc5f0b',
   },
 }
 

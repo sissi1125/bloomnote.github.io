@@ -1,3 +1,4 @@
+import { getMonthVersion } from '@/lib/utils'
 import Image from 'next/image'
 
 export default function FeatureGrid(props: { isIpad: boolean }) {
@@ -9,28 +10,28 @@ export default function FeatureGrid(props: { isIpad: boolean }) {
         {/* Left Column */}
         <div className="flex-1 flex flex-col gap-1">
           <Image
-            src="/images/ipx-grid-1.png"
+            src={`/images/ipx-grid-1.png`}
             alt="Drawing feature"
             width={500}
             height={166}
             className="mb-2"
           />
           <Image
-            src="/images/ipx-grid-2.png"
+            src={`/images/ipx-grid-2.png`}
             alt="Export feature"
             width={500}
             height={83}
             className="mb-2"
           />
           <Image
-            src="/images/ipx-grid-3.png"
+            src={"/images/ipx-grid-3.png?v=" + getMonthVersion()}
             alt="Customizable app icons"
             width={500}
             height={83}
             className="mb-2"
           />
           <Image
-            src={isIpad ? "/images/ipad-grid-4.png" : "/images/ipx-grid-4.png"}
+            src={isIpad ? `/images/ipad-grid-4.png` : `/images/ipx-grid-4.png`}
             alt="Multi-level search feature"
             width={500}
             height={83}
@@ -41,7 +42,7 @@ export default function FeatureGrid(props: { isIpad: boolean }) {
         {/* Right Column */}
         <div className="flex-1 flex flex-col gap-1">
           <Image
-            src="/images/ipx-grid-5.png"
+            src={`/images/ipx-grid-5.png`}
             alt="iCloud sync feature"
             width={500}
             height={83}

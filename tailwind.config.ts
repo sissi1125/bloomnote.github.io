@@ -63,7 +63,8 @@ const config: Config = {
   				'5': 'hsl(var(--chart-5))'
   			},
   			// 状态颜色
-  			status: colors.status
+  			status: colors.status,
+			highlight: colors.highlight,
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

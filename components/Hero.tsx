@@ -5,6 +5,7 @@ import DeviceSwitch from "./DeviceSwitch"
 import { motion } from "framer-motion"
 import { useState, useEffect } from "react"
 import { RefreshCw } from "lucide-react"
+import { getMonthVersion } from "@/lib/utils"
 
 interface HeroProps {
   isIpad: boolean
@@ -38,9 +39,9 @@ export default function Hero({ isIpad, setIsIpad }: HeroProps) {
   // 根据设备和模式选择图片
   const getImageSrc = () => {
     if (isIpad) {
-      return isMobile ? "/images/ipad-hero-sm.png" : "/images/ipad-hero-v2.png"
+      return isMobile ? "/images/ipad-hero-sm.png" : "/images/ipad-hero.png?v=" + getMonthVersion()
     } else {
-      return isMobile ? "/images/ipx-hero-v2.png" : "/images/ipx-hero-v2.png"
+      return isMobile ? "/images/ipx-hero.png" : "/images/ipx-hero.png"
     }
   }
 
