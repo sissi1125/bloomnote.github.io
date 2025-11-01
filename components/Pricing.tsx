@@ -71,7 +71,7 @@ export default function Pricing() {
               {features.map((feature) => (
                 <li key={feature.name} className="flex items-start gap-3">
                   <div className="h-5 min-w-6 rounded-md border-2 border-gray-300 flex items-center justify-center">
-                    {feature.free && <Check className="h-3.5 w-3.5 text-[#FF770E]" />}
+                    {feature.free && <Check className="h-3.5 w-3.5 text-theme" />}
                   </div>
                   <span className={`text-base ${feature.free ? 'text-gray-900' : 'text-gray-500'}`}>
                     {feature.free === true ? feature.name : feature.free || feature.name}
@@ -82,14 +82,14 @@ export default function Pricing() {
           </div>
 
           {/* Pro Plan */}
-          <div className="bg-gray-50 rounded-3xl p-6 sm:p-8 border-2 border-[#2D3142]">
+          <div className="bg-gray-50 rounded-3xl p-6 sm:p-8 border-2 border-brand-secondary">
             <h3 className="text-2xl font-bold text-gray-900 mb-8 flex flex-col sm:flex-row gap-2">
-              <span className="flex items-center gap-2">Bloomnote <span className="bg-[#FF770E] text-white text-sm px-2 py-0.5 rounded">
+              <span className="flex items-center gap-2">Bloomnote <span className="bg-theme text-white text-sm px-2 py-0.5 rounded">
                 Pro
               </span>
               </span>
               
-              <span className="text-[#FF770E] text-2xl font-bold py-0.5 rounded italic">
+              <span className="text-theme text-2xl font-bold py-0.5 rounded italic">
                 $2.99/month
               </span>
             </h3>
@@ -97,7 +97,7 @@ export default function Pricing() {
               {features.map((feature) => (
                 <li key={feature.name} className="flex items-start gap-3">
                   <div className="h-5 min-w-5 rounded-md border-2 border-gray-300 flex items-center justify-center">
-                    <Check className="h-3.5 w-3.5 text-[#FF770E]" />
+                    <Check className="h-3.5 w-3.5 text-theme" />
                   </div>
                   <span className="text-base text-gray-900">
                     {feature.pro === true ? feature.name : feature.pro || feature.name}

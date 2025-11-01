@@ -6,10 +6,10 @@ export default function Footer() {
       <div className="w-[80%] max-w-[1200px] mx-auto px-8 sm:px-12 lg:px-16 sm:w-[100%]">
         {/* Support Section */}
         <div id="support" className="text-center space-y-4">
-          <h2 className="text-4xl font-bold text-[#2D3142]">
+          <h2 className="text-4xl font-bold text-brand-secondary">
             Support
           </h2>
-          <div className="text-xl text-[#2D3142] space-y-1">
+          <div className="text-xl text-brand-secondary space-y-1">
             <p>For any questions,</p>
             <p>email us at: feedback.bloomnote@gmail.com</p>
           </div>
@@ -17,11 +17,11 @@ export default function Footer() {
         
         {/* Terms and Privacy */}
         <div className="mt-32 text-center space-y-4">
-          <Link href="/terms" className="text-2xl text-[#2D3142] hover:underline">
+          <Link href="/terms" className="text-2xl text-brand-secondary hover:underline">
             Terms and Conditions
           </Link>
           <br />
-          <Link href="/privacy" className="text-2xl text-[#2D3142] hover:underline">
+          <Link href="/privacy" className="text-2xl text-brand-secondary hover:underline">
             Privacy Policy
           </Link>
         </div>

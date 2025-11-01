@@ -17,7 +17,7 @@ export default function DeviceSwitch({ onToggle, isIpad }: DeviceSwitchProps) {
       <div className="bg-gray-200 p-1 rounded-full">
         <motion.div className="flex relative" layout>
           <motion.div
-            className="absolute top-0 left-0 w-1/2 h-full bg-[#FF770E] rounded-full pointer-events-none"
+            className="absolute top-0 left-0 w-1/2 h-full bg-theme rounded-full pointer-events-none"
             animate={{ x: isIpad ? "100%" : "0%" }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
           />

@@ -59,25 +59,25 @@ const featuresConfig: FeatureItem[] = [
       contentClassName: "ml-8",
     },
   },
-  {
-    id: "elegant-image-display",
-    image: {
-      desktop: "/images/ipx-feat2-2.png",
-      desktopIpad: "/images/ipad-feat2-2.png",
-      width: 800,
-      height: 533,
-      className: "mx-auto",
-    },
-    content: {
-      title: "Elegant Image Display",
-      subtitle: "/images/ipx-feat2-1.png",
-      description:
-        "Say goodbye to clutter! Choose from collage, slider, or single-image modes to display your images. Even multiple images can be arranged with elegance!",
-    },
-    layout: {
-      imageOrder: "last",
-    },
-  },
+  // {
+  //   id: "elegant-image-display",
+  //   image: {
+  //     desktop: "/images/ipx-feat2-2.png",
+  //     desktopIpad: "/images/ipad-feat2-2.png",
+  //     width: 800,
+  //     height: 533,
+  //     className: "mx-auto",
+  //   },
+  //   content: {
+  //     title: "Elegant Image Display",
+  //     subtitle: "/images/ipx-feat2-1.png",
+  //     description:
+  //       "Say goodbye to clutter! Choose from collage, slider, or single-image modes to display your images. Even multiple images can be arranged with elegance!",
+  //   },
+  //   layout: {
+  //     imageOrder: "last",
+  //   },
+  // },
   {
     id: "timeline-calendar",
     image: {
@@ -102,11 +102,82 @@ const featuresConfig: FeatureItem[] = [
       imageOrder: "first",
     },
   },
+  {
+    id: "timeline-calendar",
+    image: {
+      desktop: "/images/ipx-feat4.png",
+      desktopIpad: "/images/ipad-feat4.png",
+      width: 800,
+      height: 684,
+      sizes: "(max-width: 640px) 90vw, (max-width: 1024px) 60vw, 700px",
+      className: "mx-auto",
+    },
+    content: {
+      title: "Timeline and calendar view",
+      description: (
+        <>
+          1. Timeline View: Your daily note beautifully visualized
+          <br />
+          2. Calendar View: See all your notes at a glance and plan ahead with ease.
+        </>
+      ),
+    },
+    layout: {
+      imageOrder: "first",
+    },
+  },
+  {
+    id: "test-sizes",
+    image: {
+      desktop: "/images/ipx-feat5.png",
+      desktopIpad: "/images/ipad-feat5.png",
+      width: 500,
+      height: 686,
+      sizes: "(max-width: 200px) 500px, (max-width: 200px) 60vw, 500px",
+      className: "mx-auto max-h-[500px]",
+    },
+    content: {
+      title: "test-sizes",
+      description: (
+        <>
+          1. Timeline View: Your daily note beautifully visualized
+          <br />
+          2. Calendar View: See all your notes at a glance and plan ahead with ease.
+        </>
+      ),
+    },
+    layout: {
+      imageOrder: "first",
+    },
+  },
+  {
+    id: "timeline-calendar",
+    image: {
+      desktop: "/images/ipx-feat6.png",
+      desktopIpad: "/images/ipad-feat6.png",
+      width: 800,
+      height: 684,
+      sizes: "(max-width: 640px) 90vw, (max-width: 1024px) 60vw, 700px",
+      className: "mx-auto max-h-[500px]",
+    },
+    content: {
+      title: "Timeline and calendar view",
+      description: (
+        <>
+          1. Timeline View: Your daily note beautifully visualized
+          2. Calendar View: See all your notes at a glance and plan ahead with ease.
+        </>
+      ),
+    },
+    layout: {
+      imageOrder: "first",
+    },
+  },
 ]
 
 export default function Features({ isIpad }: FeaturesProps) {
   const renderContent = (item: FeatureItem) => {
-    const titleClassName = "text-4xl font-extrabold text-[#FF770E] mb-6"
+    const titleClassName = "text-4xl font-extrabold text-theme mb-6"
     const isSpecialTitle = typeof item.content.title !== "string"
 
     return (
@@ -114,7 +185,7 @@ export default function Features({ isIpad }: FeaturesProps) {
         {isSpecialTitle ? (
           <div className={titleClassName}>{item.content.title}</div>
         ) : (
-          <h3 className="text-[30px] font-bold text-[#FF770E] mb-6">{item.content.title}</h3>
+          <h3 className="text-[30px] font-bold text-theme mb-6">{item.content.title}</h3>
         )}
 
         {item.content.subtitle && typeof item.content.subtitle === "string" && item.content.subtitle.startsWith("/images/") ? (
@@ -170,23 +241,20 @@ export default function Features({ isIpad }: FeaturesProps) {
 
             // 桌面端布局：order-1 在左，order-2 在右
             // 移动端布局：order-1 在上，order-2 在下
-            if (!imageOnRight) {
+       
               // 图片在右侧：文案在左，图片在右
-              return (
-                <div key={feature.id} className="grid md:grid-cols-2 gap-12 items-center">
-                  <div className="order-2 md:order-1">{contentComponent}</div>
-                  <div className="order-1 md:order-2">{imageComponent}</div>
-                </div>
-              )
-            } else {
-              // 图片在左侧：图片在左，文案在右
-              return (
-                <div key={feature.id} className="grid md:grid-cols-2 gap-12 items-center">
-                  <div className="order-2 md:order-1">{imageComponent}</div>
-                  <div className="order-1 md:order-2">{contentComponent}</div>
-                </div>
-              )
-            }
+            return !imageOnRight ? (
+              <div key={feature.id} className="grid md:grid-cols-2 gap-12 items-center">
+                <div className="order-2 md:order-1">{contentComponent}</div>
+                <div className="order-1 md:order-2">{imageComponent}</div>
+              </div>
+            ):(
+              <div key={feature.id} className="grid md:grid-cols-2 gap-12 items-center">
+                <div className="order-2 md:order-1">{imageComponent}</div>
+                <div className="order-1 md:order-2">{contentComponent}</div>
+              </div>
+            )
+            
           })}
 
           {/* Additional text */}

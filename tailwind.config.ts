@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { colors } from "./lib/colors";
 
 const config: Config = {
     darkMode: ["class"],
@@ -10,6 +11,17 @@ const config: Config = {
   theme: {
   	extend: {
   		colors: {
+  			// 主题色配置（使用 theme 避免与 shadcn 的 primary/secondary 冲突）
+  			theme: {
+  				DEFAULT: colors.primary.DEFAULT,
+  				hover: colors.primary.hover,
+  				light: colors.primary.light,
+  				dark: colors.primary.dark,
+  			},
+  			brand: {
+  				primary: colors.primary,
+  				secondary: colors.secondary,
+  			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -49,7 +61,9 @@ const config: Config = {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
-  			}
+  			},
+  			// 状态颜色
+  			status: colors.status
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

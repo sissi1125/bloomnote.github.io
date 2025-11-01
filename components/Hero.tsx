@@ -124,7 +124,7 @@ export default function Hero({ isIpad, setIsIpad }: HeroProps) {
               {isLoading && !hasError && (
                 <div className="absolute inset-0 flex items-center justify-center bg-gray-50 rounded-lg">
                   <div className="flex flex-col items-center gap-3">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#FF770E]"></div>
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-theme"></div>
                     <span className="text-sm text-gray-500">loading...</span>
                   </div>
                 </div>
@@ -137,7 +137,7 @@ export default function Hero({ isIpad, setIsIpad }: HeroProps) {
                     <p className="text-sm text-gray-500">Image loading failed</p>
                     <button
                       onClick={handleRetry}
-                      className="flex items-center gap-2 px-4 py-2 bg-[#FF770E] text-white rounded-lg hover:bg-[#e6690d] transition-colors"
+                      className="flex items-center gap-2 px-4 py-2 bg-theme text-white rounded-lg hover:bg-theme-hover transition-colors"
                     >
                       <RefreshCw className="h-4 w-4" />
                       <span>retry</span>
