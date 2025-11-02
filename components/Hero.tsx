@@ -98,24 +98,64 @@ export default function Hero({ isIpad, setIsIpad }: HeroProps) {
     },
   }
 
+  // blooms 单词的放大动画变体
+  const bloomsVariants = {
+    hidden: { 
+      opacity: 0, 
+      x: 0,
+      y: -40,
+      scale: 0.3,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 200,
+        damping: 25,
+      },
+    },
+  }
+
   return (
     // <div className="bg-white">
       <div className="w-[100%] max-w-[1000px] mx-auto py-14 px-3 sm:py-16 sm:px-12 lg:px-16 sm:w-[100%]">
           <motion.h1
-            className="text-4xl sm:text-6xl lg:text-7xl font-bold text-gray-900 text-center flex flex-wrap justify-center gap-x-3 gap-y-2"
+            className="text-4xl sm:text-6xl lg:text-7xl font-bold text-gray-900 text-center flex flex-wrap justify-center gap-x-3 gap-y-2 py-10"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
-            {titleWords.map((word, index) => (
-              <motion.span
-                key={index}
-                variants={wordVariants}
-                className="inline-block"
-              >
-                {word}
-              </motion.span>
-            ))}
+            {titleWords.map((word, index) => {
+              const isBlooms = word === "blooms"
+              return (
+                <motion.span
+                  key={index}
+                  variants={isBlooms ? bloomsVariants : wordVariants}
+                  className={`inline-block relative ${isBlooms ? 'font-bold text-theme' : ''}`}
+                  animate={
+                    isBlooms
+                      ? {
+                          scale: [1, 1.2, 1],
+                          transition: {
+                            scale: {
+                              duration: 10,
+                              delay: 1,
+                              repeat: Infinity,
+                              repeatDelay: 3,
+                              ease: "easeInOut",
+                            },
+                          },
+                        }
+                      : undefined
+                  }
+                >
+                  {word}
+                </motion.span>
+              )
+            })}
           </motion.h1>
           <DeviceSwitch onToggle={handleToggle} isIpad={isIpad} />
         

@@ -43,7 +43,7 @@ export default function Navbar() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-3">
               <Image src="/images/appIcon.png?v=2" alt="Bloomnote Logo" width={24} height={24} />
-              <span className="text-xl font-bold text-gray-900">Bloomnote</span>
+              <span className="text-xl font-bold text-theme">Bloomnote</span>
             </Link>
           </div>
           <div className="hidden sm:flex sm:space-x-12">

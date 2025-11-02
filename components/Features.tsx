@@ -208,9 +208,9 @@ export default function Features({ isIpad }: FeaturesProps) {
   }
 
   return (
-    <div id="features" className="bg-white py-24">
-      <div className="w-[90%] max-w-[1200px] mx-auto px-4 sm:px-12 lg:px-16 sm:w-[100%]">
-        <div className="space-y-24">
+    <div id="features" className="bg-white py-12">
+      <div className="w-[100%] max-w-[1200px] mx-auto px-4 sm:px-12 lg:px-16 sm:w-[100%]">
+        <div className="space-y-16 px-4">
           {featuresConfig.map((feature, index) => {
             // 偶数索引（0, 2, 4...）：图片在右，文案在左
             // 奇数索引（1, 3, 5...）：图片在左，文案在右

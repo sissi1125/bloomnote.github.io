@@ -133,7 +133,7 @@ export default function FeatureSlider({ isIpad = false }: FeatureSliderProps) {
               key={image.id}
               className="relative w-full overflow-hidden"
               style={{
-                height: isIpad ? '400px' : '500px',
+                height: isIpad ? '200px' : '500px',
               }}
             >
               <Image
@@ -153,7 +153,7 @@ export default function FeatureSlider({ isIpad = false }: FeatureSliderProps) {
 
   // 移动端：轮播图
   return (
-    <div className="w-full mt-24">
+    <div className="w-full mt-16">
       <div
         className="relative w-full"
         onTouchStart={handleTouchStart}
@@ -164,7 +164,7 @@ export default function FeatureSlider({ isIpad = false }: FeatureSliderProps) {
         <div 
           className="flex items-center justify-center gap-4 px-12"
           style={{
-            height: isIpad ? '500px' : '400px',
+            height: isIpad ? '300px' : '550px',
           }}
         >
           {visibleImages.map((image) => {
@@ -181,7 +181,7 @@ export default function FeatureSlider({ isIpad = false }: FeatureSliderProps) {
                 className="flex-shrink-0 w-full"
                 initial={{ 
                   opacity: 0, 
-                  scale: 0.8,
+                  scale: 1,
                   x: initialX,
                 }}
                 animate={{
@@ -195,7 +195,7 @@ export default function FeatureSlider({ isIpad = false }: FeatureSliderProps) {
                   damping: 30,
                 }}
               >
-                <div className="relative w-full h-full  overflow-hidden shadow-2xl">
+                <div className="relative w-full h-full  overflow-hidden">
                   <Image
                     src={image.src}
                     alt={image.alt}
@@ -227,7 +227,7 @@ export default function FeatureSlider({ isIpad = false }: FeatureSliderProps) {
         </button>
 
         {/* 指示器 */}
-        <div className="flex justify-center gap-2 mt-6">
+        <div className="absolute bottom-0 left-0 right-0 flex justify-center gap-2 mt-14">
           {images.map((_, index) => (
             <button
               key={index}
