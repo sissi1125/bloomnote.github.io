@@ -126,14 +126,14 @@ export default function FeatureSlider({ isIpad = false }: FeatureSliderProps) {
   // PC端：Grid布局显示所有4张图片
   if (!isMobile) {
     return (
-      <div className="w-full mt-12">
+      <div className="w-full mt-8">
         <div className={`grid ${isIpad ? 'grid-cols-2' : 'grid-cols-4'} gap-4 px-2`}>
           {images.map((image) => (
             <div
               key={image.id}
               className="relative w-full overflow-hidden"
               style={{
-                height: isIpad ? '200px' : '500px',
+                height: isIpad ? '300px' : '500px',
               }}
             >
               <Image
