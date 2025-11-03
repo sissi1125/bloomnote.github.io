@@ -193,6 +193,9 @@ export default function Features({ isIpad }: FeaturesProps) {
             width={400}
             height={100}
             className="mb-6"
+            loading="lazy"
+            decoding="async"
+            unoptimized
           />
         ) : item.content.subtitle ? (
           <div className="mb-6">{item.content.subtitle}</div>

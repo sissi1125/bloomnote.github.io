@@ -17,6 +17,7 @@ export default function Hero({ isIpad, setIsIpad }: HeroProps) {
   const [isLoading, setIsLoading] = useState(true)
   const [hasError, setHasError] = useState(false)
   const [imageKey, setImageKey] = useState(0) // 用于强制重新加载图片
+  const [retryNonce, setRetryNonce] = useState(0) // 失败重试时用于穿透缓存
 
   // 检测移动端
   useEffect(() => {
@@ -39,9 +40,11 @@ export default function Hero({ isIpad, setIsIpad }: HeroProps) {
   // 根据设备和模式选择图片
   const getImageSrc = () => {
     if (isIpad) {
-      return isMobile ? "/images/ipad-hero-sm.png" : "/images/ipad-hero.png?v=" + getMonthVersion()
+      const base = isMobile ? "/images/ipad-hero-sm.png" : "/images/ipad-hero.png?v=" + getMonthVersion()
+      return base + (base.includes('?') ? `&cb=${retryNonce}` : `?cb=${retryNonce}`)
     } else {
-      return isMobile ? "/images/ipx-hero.png" : "/images/ipx-hero.png"
+      const base = isMobile ? "/images/ipx-hero.png" : "/images/ipx-hero.png"
+      return base + (base.includes('?') ? `&cb=${retryNonce}` : `?cb=${retryNonce}`)
     }
   }
 
@@ -66,6 +69,7 @@ export default function Hero({ isIpad, setIsIpad }: HeroProps) {
     setHasError(false)
     setIsLoading(true)
     setImageKey(prev => prev + 1)
+    setRetryNonce(prev => prev + 1)
   }
 
   const titleWords = "Where every note blooms".split(" ")
@@ -202,6 +206,8 @@ export default function Hero({ isIpad, setIsIpad }: HeroProps) {
                 onLoad={handleImageLoad}
                 onError={handleImageError}
                 priority
+                fetchPriority="high"
+                unoptimized
               />
             </div>
           </div>
@@ -212,7 +218,7 @@ export default function Hero({ isIpad, setIsIpad }: HeroProps) {
               rel="noopener noreferrer"
               className="inline-block transition-transform hover:scale-105"
             >
-              <Image src="/images/ipx-appstore.png" alt="Download on the App Store" width={170} height={67} priority />
+              <Image src="/images/ipx-appstore.png" alt="Download on the App Store" width={170} height={67} priority unoptimized />
             </Link>
           </div>
       </div>

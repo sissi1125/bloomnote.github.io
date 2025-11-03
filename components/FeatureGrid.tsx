@@ -15,6 +15,10 @@ export default function FeatureGrid(props: { isIpad: boolean }) {
             width={500}
             height={166}
             className="mb-2"
+            loading="lazy"
+            decoding="async"
+            unoptimized
+            sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 500px"
           />
           <Image
             src={`/images/ipx-grid-2.png`}
@@ -22,6 +26,10 @@ export default function FeatureGrid(props: { isIpad: boolean }) {
             width={500}
             height={83}
             className="mb-2"
+            loading="lazy"
+            decoding="async"
+            unoptimized
+            sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 500px"
           />
           <Image
             src={"/images/ipx-grid-3.png?v=" + getMonthVersion()}
@@ -29,6 +37,10 @@ export default function FeatureGrid(props: { isIpad: boolean }) {
             width={500}
             height={83}
             className="mb-2"
+            loading="lazy"
+            decoding="async"
+            unoptimized
+            sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 500px"
           />
           <Image
             src={isIpad ? `/images/ipad-grid-4.png` : `/images/ipx-grid-4.png`}
@@ -36,6 +48,10 @@ export default function FeatureGrid(props: { isIpad: boolean }) {
             width={500}
             height={83}
             className="mb-2"
+            loading="lazy"
+            decoding="async"
+            unoptimized
+            sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 500px"
           />
         </div>
 
@@ -47,6 +63,10 @@ export default function FeatureGrid(props: { isIpad: boolean }) {
             width={500}
             height={83}
             className="mb-2"
+            loading="lazy"
+            decoding="async"
+            unoptimized
+            sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 500px"
           />
           <Image
             src={isIpad ? "/images/ipad-grid-6.png" : "/images/ipx-grid-6.png"}
@@ -54,6 +74,10 @@ export default function FeatureGrid(props: { isIpad: boolean }) {
             width={500}
             height={83}
             className="mb-2"
+            loading="lazy"
+            decoding="async"
+            unoptimized
+            sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 500px"
           />
           <Image
             src={isIpad ? "/images/ipad-grid-7.png" : "/images/ipx-grid-7.png"}
@@ -61,6 +85,10 @@ export default function FeatureGrid(props: { isIpad: boolean }) {
             width={500}
             height={83}
             className="mb-2 -mt-4"
+            loading="lazy"
+            decoding="async"
+            unoptimized
+            sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 500px"
           />
           <Image
             src={isIpad ? "/images/ipad-grid-8.png" : "/images/ipx-grid-8.png"}
@@ -68,6 +96,10 @@ export default function FeatureGrid(props: { isIpad: boolean }) {
             width={500}
             height={83}
             className="mb-2"
+            loading="lazy"
+            decoding="async"
+            unoptimized
+            sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 500px"
           />
           <Image
             src="/images/ipx-grid-9.png"
@@ -75,6 +107,10 @@ export default function FeatureGrid(props: { isIpad: boolean }) {
             width={500}
             height={83}
             className="mb-2 -mt-3"
+            loading="lazy"
+            decoding="async"
+            unoptimized
+            sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 500px"
           />
         </div>
       </div>

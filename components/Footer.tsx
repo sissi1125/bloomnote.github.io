@@ -196,6 +196,7 @@ export default function Footer() {
                 width={300}
                 height={300}
                 className="rounded-lg"
+                unoptimized
               />
             </div>
             <p className="text-center text-sm text-gray-500 mt-4">

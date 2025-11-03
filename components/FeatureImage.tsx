@@ -57,6 +57,7 @@ export default function FeatureImage({
   const [isLoading, setIsLoading] = useState(true)
   const [hasError, setHasError] = useState(false)
   const [imageKey, setImageKey] = useState(0)
+  const [retryNonce, setRetryNonce] = useState(0)
 
   // 检测移动端
   useEffect(() => {
@@ -74,20 +75,25 @@ export default function FeatureImage({
   const imageSrc = useMemo(() => {
     if (isIpad) {
       if (isMobile && src.mobileIpad) {
-        return src.mobileIpad
+        const base = src.mobileIpad
+        return base + (base.includes('?') ? `&cb=${retryNonce}` : `?cb=${retryNonce}`)
       }
       if (!isMobile && src.desktopIpad) {
-        return src.desktopIpad
+        const base = src.desktopIpad
+        return base + (base.includes('?') ? `&cb=${retryNonce}` : `?cb=${retryNonce}`)
       }
       // Fallback to base iPad images
       if (isMobile && src.mobile) {
-        return src.mobile
+        const base = src.mobile
+        return base + (base.includes('?') ? `&cb=${retryNonce}` : `?cb=${retryNonce}`)
       }
-      return src.desktop
+      const base = src.desktop
+      return base + (base.includes('?') ? `&cb=${retryNonce}` : `?cb=${retryNonce}`)
     } else {
-      return isMobile && src.mobile ? src.mobile : src.desktop
+      const base = isMobile && src.mobile ? src.mobile : src.desktop
+      return base + (base.includes('?') ? `&cb=${retryNonce}` : `?cb=${retryNonce}`)
     }
-  }, [isIpad, isMobile, src])
+  }, [isIpad, isMobile, src, retryNonce])
 
   // 当图片源改变时，重置加载状态
   useEffect(() => {
@@ -110,6 +116,7 @@ export default function FeatureImage({
     setHasError(false)
     setIsLoading(true)
     setImageKey((prev) => prev + 1)
+    setRetryNonce((prev) => prev + 1)
   }
 
   // 分离样式类
@@ -170,6 +177,9 @@ export default function FeatureImage({
         }`}
         onLoad={handleImageLoad}
         onError={handleImageError}
+        loading="lazy"
+        decoding="async"
+        unoptimized
       />
     </div>
   )

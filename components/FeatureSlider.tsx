@@ -143,6 +143,9 @@ export default function FeatureSlider({ isIpad = false }: FeatureSliderProps) {
                 height={isIpad ? 600 : 600}
                 className="w-full h-full object-contain"
                 sizes={isIpad ? "50vw" : "25vw"}
+                loading="lazy"
+                decoding="async"
+                unoptimized
               />
             </div>
           ))}
@@ -203,6 +206,9 @@ export default function FeatureSlider({ isIpad = false }: FeatureSliderProps) {
                     height={isIpad ? 900 : 600}
                     className="w-full h-full object-contain"
                     sizes="100vw"
+                    loading="lazy"
+                    decoding="async"
+                    unoptimized
                   />
                 </div>
               </motion.div>
