@@ -18,6 +18,7 @@ export default function Hero({ isIpad, setIsIpad }: HeroProps) {
   const [hasError, setHasError] = useState(false)
   const [imageKey, setImageKey] = useState(0) // 用于强制重新加载图片
   const [retryNonce, setRetryNonce] = useState(0) // 失败重试时用于穿透缓存
+  const [retryCount, setRetryCount] = useState(0) // 自动重试次数
 
   // 检测移动端
   useEffect(() => {
@@ -35,7 +36,37 @@ export default function Hero({ isIpad, setIsIpad }: HeroProps) {
   useEffect(() => {
     setIsLoading(true)
     setHasError(false)
+    setRetryCount(0)
+    setRetryNonce(0)
   }, [isIpad, isMobile])
+
+  // 加载超时检测
+  useEffect(() => {
+    if (!isLoading || hasError) {
+      return
+    }
+    
+    const timeout = setTimeout(() => {
+      if (isLoading) {
+        console.warn('Image loading timeout, retrying...')
+        setIsLoading(false)
+        // 触发自动重试
+        if (retryCount < 3) {
+          setTimeout(() => {
+            setRetryCount(prev => prev + 1)
+            setRetryNonce(prev => prev + 1)
+            setImageKey(prev => prev + 1)
+            setIsLoading(true)
+            setHasError(false)
+          }, 1000 * (retryCount + 1))
+        } else {
+          setHasError(true)
+        }
+      }
+    }, 15000) // 15秒超时
+
+    return () => clearTimeout(timeout)
+  }, [isLoading, hasError, retryCount])
 
   // 根据设备和模式选择图片
   const getImageSrc = () => {
@@ -62,12 +93,24 @@ export default function Hero({ isIpad, setIsIpad }: HeroProps) {
 
   const handleImageError = () => {
     setIsLoading(false)
-    setHasError(true)
+    // 自动重试最多3次
+    if (retryCount < 3) {
+      setTimeout(() => {
+        setRetryCount(prev => prev + 1)
+        setRetryNonce(prev => prev + 1)
+        setImageKey(prev => prev + 1)
+        setIsLoading(true)
+        setHasError(false)
+      }, 1000 * (retryCount + 1)) // 递增延迟：1s, 2s, 3s
+    } else {
+      setHasError(true)
+    }
   }
 
   const handleRetry = () => {
     setHasError(false)
     setIsLoading(true)
+    setRetryCount(0)
     setImageKey(prev => prev + 1)
     setRetryNonce(prev => prev + 1)
   }
@@ -193,7 +236,7 @@ export default function Hero({ isIpad, setIsIpad }: HeroProps) {
 
               {/* 图片 */}
               <Image
-                key={imageKey}
+                key={`${imageKey}-${retryNonce}`}
                 src={getImageSrc()}
                 alt={isIpad ? "Bloomnote app interface showcase for iPad" : "Bloomnote app interface showcase for iPhone"}
                 width={isIpad ? 1600 : 1200}

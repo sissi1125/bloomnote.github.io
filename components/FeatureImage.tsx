@@ -58,6 +58,7 @@ export default function FeatureImage({
   const [hasError, setHasError] = useState(false)
   const [imageKey, setImageKey] = useState(0)
   const [retryNonce, setRetryNonce] = useState(0)
+  const [retryCount, setRetryCount] = useState(0)
 
   // 检测移动端
   useEffect(() => {
@@ -99,8 +100,37 @@ export default function FeatureImage({
   useEffect(() => {
     setIsLoading(true)
     setHasError(false)
+    setRetryCount(0)
     setImageKey((prev) => prev + 1)
   }, [imageSrc])
+
+  // 加载超时检测
+  useEffect(() => {
+    if (!isLoading || hasError) {
+      return
+    }
+    
+    const timeout = setTimeout(() => {
+      if (isLoading) {
+        console.warn('Image loading timeout, retrying...', imageSrc)
+        setIsLoading(false)
+        // 触发自动重试
+        if (retryCount < 3) {
+          setTimeout(() => {
+            setRetryCount(prev => prev + 1)
+            setRetryNonce(prev => prev + 1)
+            setImageKey(prev => prev + 1)
+            setIsLoading(true)
+            setHasError(false)
+          }, 1000 * (retryCount + 1))
+        } else {
+          setHasError(true)
+        }
+      }
+    }, 15000) // 15秒超时
+
+    return () => clearTimeout(timeout)
+  }, [isLoading, hasError, imageSrc, retryCount])
 
   const handleImageLoad = () => {
     setIsLoading(false)
@@ -109,12 +139,24 @@ export default function FeatureImage({
 
   const handleImageError = () => {
     setIsLoading(false)
-    setHasError(true)
+    // 自动重试最多3次
+    if (retryCount < 3) {
+      setTimeout(() => {
+        setRetryCount(prev => prev + 1)
+        setRetryNonce(prev => prev + 1)
+        setImageKey(prev => prev + 1)
+        setIsLoading(true)
+        setHasError(false)
+      }, 1000 * (retryCount + 1)) // 递增延迟：1s, 2s, 3s
+    } else {
+      setHasError(true)
+    }
   }
 
   const handleRetry = () => {
     setHasError(false)
     setIsLoading(true)
+    setRetryCount(0)
     setImageKey((prev) => prev + 1)
     setRetryNonce((prev) => prev + 1)
   }
@@ -162,7 +204,7 @@ export default function FeatureImage({
         当设置了 max-h- 时，图片会保持宽高比等比例缩放，高度和宽度同时缩小
       */}
       <Image
-        key={imageKey}
+        key={`${imageKey}-${retryNonce}`}
         src={imageSrc}
         alt={alt}
         width={width}
