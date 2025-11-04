@@ -183,7 +183,7 @@ export default function FeatureSlider({ isIpad = false }: FeatureSliderProps) {
             return (
               <div
                 key={image.id}
-                className="relative w-full overflow-hidden bg-gray-50"
+                className="relative w-full overflow-hidden"
                 style={{
                   height: isIpad ? '300px' : '500px',
                 }}
