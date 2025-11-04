@@ -260,7 +260,7 @@ export default function FeatureSlider({ isIpad = false }: FeatureSliderProps) {
 
             return (
               <motion.div
-                key={`${image.id}-${currentIndex}`}
+                key={image.id}
                 className="flex-shrink-0 w-full"
                 initial={{ 
                   opacity: 0, 
