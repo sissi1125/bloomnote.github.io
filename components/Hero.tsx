@@ -5,7 +5,7 @@ import DeviceSwitch from "./DeviceSwitch"
 import { motion } from "framer-motion"
 import { useState, useEffect } from "react"
 import { RefreshCw } from "lucide-react"
-import { getMonthVersion } from "@/lib/utils"
+import { getMonthVersion, getPlaceholderImage } from "@/lib/utils"
 
 interface HeroProps {
   isIpad: boolean
@@ -39,6 +39,22 @@ export default function Hero({ isIpad, setIsIpad }: HeroProps) {
     setRetryCount(0)
     setRetryNonce(0)
   }, [isIpad, isMobile])
+
+  // 检查图片是否已经加载完成（处理缓存情况）
+  useEffect(() => {
+    // 延迟检查，确保 DOM 已更新
+    const timer = setTimeout(() => {
+      // 查找页面中的 img 元素（Next.js Image 会渲染为 img）
+      const imgElement = document.querySelector(`img[alt="${isIpad ? "Bloomnote app interface showcase for iPad" : "Bloomnote app interface showcase for iPhone"}"]`) as HTMLImageElement
+      if (imgElement && imgElement.complete && imgElement.naturalWidth > 0) {
+        // 图片已经加载完成（可能是从缓存中加载的），立即更新状态
+        setIsLoading(false)
+        setHasError(false)
+      }
+    }, 100)
+
+    return () => clearTimeout(timer)
+  }, [imageKey, retryNonce, isIpad, isMobile])
 
   // 加载超时检测
   useEffect(() => {
@@ -218,40 +234,50 @@ export default function Hero({ isIpad, setIsIpad }: HeroProps) {
                 </div>
               )}
 
-              {/* 错误状态 */}
-              {hasError && (
-                <div className="absolute inset-0 flex items-center justify-center bg-gray-50 rounded-lg">
-                  <div className="flex flex-col items-center gap-3">
-                    <p className="text-sm text-gray-500">Image loading failed</p>
+              {/* 图片 */}
+              {hasError ? (
+                <div className="relative w-full" style={{ height: 'auto' }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={getPlaceholderImage(isIpad ? 1600 : 1200, 1000)}
+                    alt={isIpad ? "Bloomnote app interface showcase for iPad" : "Bloomnote app interface showcase for iPhone"}
+                    className="w-full h-auto"
+                    style={{ minHeight: '400px' }}
+                  />
+                  <div className="absolute bottom-4 right-4">
                     <button
                       onClick={handleRetry}
-                      className="flex items-center gap-2 px-4 py-2 bg-theme text-white rounded-lg hover:bg-theme-hover transition-colors"
+                      className="flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm text-gray-700 rounded-lg hover:bg-white transition-colors shadow-lg"
+                      title="Retry loading image"
                     >
                       <RefreshCw className="h-4 w-4" />
-                      <span>retry</span>
+                      <span className="text-sm">Retry</span>
                     </button>
                   </div>
                 </div>
+              ) : (
+                <Image
+                  key={`${imageKey}-${retryNonce}`}
+                  src={getImageSrc()}
+                  alt={isIpad ? "Bloomnote app interface showcase for iPad" : "Bloomnote app interface showcase for iPhone"}
+                  width={isIpad ? 1600 : 1200}
+                  height={1000}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1000px"
+                  className={`w-full transition-opacity duration-300 ${
+                    isLoading ? 'opacity-0' : 'opacity-100'
+                  }`}
+                  style={{ height: 'auto' }}
+                  onLoad={handleImageLoad}
+                  onError={handleImageError}
+                  onLoadingComplete={() => {
+                    setIsLoading(false)
+                    setHasError(false)
+                  }}
+                  priority
+                  fetchPriority="high"
+                  unoptimized
+                />
               )}
-
-              {/* 图片 */}
-              <Image
-                key={`${imageKey}-${retryNonce}`}
-                src={getImageSrc()}
-                alt={isIpad ? "Bloomnote app interface showcase for iPad" : "Bloomnote app interface showcase for iPhone"}
-                width={isIpad ? 1600 : 1200}
-                height={1000}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1000px"
-                className={`w-full transition-opacity duration-300 ${
-                  isLoading || hasError ? 'opacity-0' : 'opacity-100'
-                }`}
-                style={{ height: 'auto' }}
-                onLoad={handleImageLoad}
-                onError={handleImageError}
-                priority
-                fetchPriority="high"
-                unoptimized
-              />
             </div>
           </div>
           <div className="mt-12 text-center">

@@ -1,9 +1,10 @@
 "use client"
 
 import Image from "next/image"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { motion } from "framer-motion"
+import { getPlaceholderImage } from "@/lib/utils"
 
 interface FeatureSliderProps {
   isIpad?: boolean
@@ -15,6 +16,9 @@ export default function FeatureSlider({ isIpad = false }: FeatureSliderProps) {
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)
   const [direction, setDirection] = useState<'left' | 'right' | null>(null)
+  const [loadedImageIds, setLoadedImageIds] = useState<Set<number>>(new Set())
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [failedImages, setFailedImages] = useState<Set<number>>(new Set())
 
   // 4张图片，根据设备类型选择对应的图片
   const images = Array.from({ length: 4 }, (_, i) => {
@@ -46,6 +50,52 @@ export default function FeatureSlider({ isIpad = false }: FeatureSliderProps) {
 
     return () => window.removeEventListener("resize", checkMobile)
   }, [])
+
+  // 使用 IntersectionObserver 实现真正的懒加载（仅PC端）
+  useEffect(() => {
+    if (isMobile) {
+      return // 移动端不需要，因为只有一张图
+    }
+    
+    // 初始化前2张图片立即加载
+    setLoadedImageIds(new Set([1, 2]))
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const imgElement = entry.target as HTMLElement
+            const imageId = parseInt(imgElement.dataset.imageId || '0')
+            if (imageId > 0) {
+              setLoadedImageIds((prev) => {
+                const newSet = new Set(prev)
+                newSet.add(imageId)
+                return newSet
+              })
+            }
+          }
+        })
+      },
+      { rootMargin: '50px' } // 提前50px开始加载
+    )
+
+    // 延迟执行，确保DOM已渲染
+    let imageElements: NodeListOf<Element> | null = null
+    const timer = setTimeout(() => {
+      const container = containerRef.current
+      if (container) {
+        imageElements = container.querySelectorAll('[data-image-id]')
+        imageElements.forEach((img) => observer.observe(img))
+      }
+    }, 100)
+
+    return () => {
+      clearTimeout(timer)
+      if (imageElements) {
+        imageElements.forEach((img) => observer.unobserve(img))
+      }
+    }
+  }, [isMobile, isIpad])
 
   // 获取索引（支持循环）
   const getIndex = (index: number) => {
@@ -126,29 +176,59 @@ export default function FeatureSlider({ isIpad = false }: FeatureSliderProps) {
   // PC端：Grid布局显示所有4张图片
   if (!isMobile) {
     return (
-      <div className="w-full mt-8">
+      <div className="w-full mt-8" ref={containerRef}>
         <div className={`grid ${isIpad ? 'grid-cols-2' : 'grid-cols-4'} gap-4 px-2`}>
-          {images.map((image) => (
-            <div
-              key={image.id}
-              className="relative w-full overflow-hidden"
-              style={{
-                height: isIpad ? '300px' : '500px',
-              }}
-            >
-              <Image
-                src={image.src}
-                alt={image.alt}
-                width={isIpad ? 1200 : 800}
-                height={isIpad ? 600 : 600}
-                className="w-full h-full object-contain"
-                sizes={isIpad ? "50vw" : "25vw"}
-                loading="lazy"
-                decoding="async"
-                unoptimized
-              />
-            </div>
-          ))}
+          {images.map((image) => {
+            const shouldLoad = loadedImageIds.has(image.id) // 通过 IntersectionObserver 控制加载
+            return (
+              <div
+                key={image.id}
+                className="relative w-full overflow-hidden bg-gray-50"
+                style={{
+                  height: isIpad ? '300px' : '500px',
+                }}
+              >
+                {shouldLoad ? (
+                  failedImages.has(image.id) ? (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img
+                      src={getPlaceholderImage(isIpad ? 1200 : 800, isIpad ? 600 : 600)}
+                      alt={image.alt}
+                      className="w-full h-full object-contain"
+                      data-image-id={image.id}
+                    />
+                  ) : (
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      width={isIpad ? 1200 : 800}
+                      height={isIpad ? 600 : 600}
+                      className="w-full h-full object-contain"
+                      sizes={isIpad ? "50vw" : "25vw"}
+                      loading="lazy"
+                      decoding="async"
+                      unoptimized
+                      data-image-id={image.id}
+                      onError={() => {
+                        setFailedImages((prev) => {
+                          const newSet = new Set(prev)
+                          newSet.add(image.id)
+                          return newSet
+                        })
+                      }}
+                    />
+                  )
+                ) : (
+                  <div
+                    className="w-full h-full flex items-center justify-center"
+                    data-image-id={image.id}
+                  >
+                    <div className="animate-pulse text-gray-300">Loading...</div>
+                  </div>
+                )}
+              </div>
+            )
+          })}
         </div>
       </div>
     )
@@ -199,17 +279,33 @@ export default function FeatureSlider({ isIpad = false }: FeatureSliderProps) {
                 }}
               >
                 <div className="relative w-full h-full  overflow-hidden">
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    width={isIpad ? 1200 : 800}
-                    height={isIpad ? 900 : 600}
-                    className="w-full h-full object-contain"
-                    sizes="100vw"
-                    loading="lazy"
-                    decoding="async"
-                    unoptimized
-                  />
+                  {failedImages.has(image.id) ? (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img
+                      src={getPlaceholderImage(isIpad ? 1200 : 800, isIpad ? 900 : 600)}
+                      alt={image.alt}
+                      className="w-full h-full object-contain"
+                    />
+                  ) : (
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      width={isIpad ? 1200 : 800}
+                      height={isIpad ? 900 : 600}
+                      className="w-full h-full object-contain"
+                      sizes="100vw"
+                      loading="lazy"
+                      decoding="async"
+                      unoptimized
+                      onError={() => {
+                        setFailedImages((prev) => {
+                          const newSet = new Set(prev)
+                          newSet.add(image.id)
+                          return newSet
+                        })
+                      }}
+                    />
+                  )}
                 </div>
               </motion.div>
             )

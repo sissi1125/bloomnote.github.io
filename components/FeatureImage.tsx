@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { useState, useEffect, useMemo } from "react"
 import { RefreshCw } from "lucide-react"
+import { getPlaceholderImage } from "@/lib/utils"
 
 interface FeatureImageProps {
   src: {
@@ -104,6 +105,22 @@ export default function FeatureImage({
     setImageKey((prev) => prev + 1)
   }, [imageSrc])
 
+  // 检查图片是否已经加载完成（处理缓存情况）
+  useEffect(() => {
+    // 延迟检查，确保 DOM 已更新
+    const timer = setTimeout(() => {
+      // 查找页面中的 img 元素（通过 alt 属性查找）
+      const imgElement = document.querySelector(`img[alt="${alt}"]`) as HTMLImageElement
+      if (imgElement && imgElement.complete && imgElement.naturalWidth > 0) {
+        // 图片已经加载完成（可能是从缓存中加载的），立即更新状态
+        setIsLoading(false)
+        setHasError(false)
+      }
+    }, 100)
+
+    return () => clearTimeout(timer)
+  }, [imageKey, retryNonce, imageSrc, alt])
+
   // 加载超时检测
   useEffect(() => {
     if (!isLoading || hasError) {
@@ -175,22 +192,6 @@ export default function FeatureImage({
         </div>
       )}
 
-      {/* 错误状态 */}
-      {hasError && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-50 rounded-lg">
-          <div className="flex flex-col items-center gap-3">
-            <p className="text-sm text-gray-500">Image loading failed</p>
-            <button
-              onClick={handleRetry}
-              className="flex items-center gap-2 px-4 py-2 bg-theme text-white rounded-lg hover:bg-theme-hover transition-colors"
-            >
-              <RefreshCw className="h-4 w-4" />
-              <span>retry</span>
-            </button>
-          </div>
-        </div>
-      )}
-
       {/* 图片 */}
       {/* 
         样式说明：
@@ -203,26 +204,55 @@ export default function FeatureImage({
         
         当设置了 max-h- 时，图片会保持宽高比等比例缩放，高度和宽度同时缩小
       */}
-      <Image
-        key={`${imageKey}-${retryNonce}`}
-        src={imageSrc}
-        alt={alt}
-        width={width}
-        height={height}
-        sizes={sizes || "(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 800px"}
-        className={`${
-          imageClasses.includes('max-h') || imageClasses.includes('h-')
-            ? 'w-auto max-w-full' // 当有高度限制时，宽度自动，但不超过容器
-            : 'w-full' // 默认宽度占满容器
-        } h-auto transition-opacity duration-300 ${imageClasses} ${
-          isLoading || hasError ? "opacity-0" : "opacity-100"
-        }`}
-        onLoad={handleImageLoad}
-        onError={handleImageError}
-        loading="lazy"
-        decoding="async"
-        unoptimized
-      />
+      {hasError ? (
+        <div className="relative">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={getPlaceholderImage(width, height)}
+            alt={alt}
+            className={`${
+              imageClasses.includes('max-h') || imageClasses.includes('h-')
+                ? 'w-auto max-w-full'
+                : 'w-full'
+            } h-auto ${imageClasses}`}
+          />
+          <div className="absolute bottom-2 right-2">
+            <button
+              onClick={handleRetry}
+              className="flex items-center gap-1 px-2 py-1 bg-white/90 backdrop-blur-sm text-gray-600 rounded text-xs hover:bg-white transition-colors shadow-sm"
+              title="Retry loading image"
+            >
+              <RefreshCw className="h-3 w-3" />
+              <span>Retry</span>
+            </button>
+          </div>
+        </div>
+      ) : (
+        <Image
+          key={`${imageKey}-${retryNonce}`}
+          src={imageSrc}
+          alt={alt}
+          width={width}
+          height={height}
+          sizes={sizes || "(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 800px"}
+          className={`${
+            imageClasses.includes('max-h') || imageClasses.includes('h-')
+              ? 'w-auto max-w-full' // 当有高度限制时，宽度自动，但不超过容器
+              : 'w-full' // 默认宽度占满容器
+          } h-auto transition-opacity duration-300 ${imageClasses} ${
+            isLoading ? "opacity-0" : "opacity-100"
+          }`}
+          onLoad={handleImageLoad}
+          onError={handleImageError}
+          onLoadingComplete={() => {
+            setIsLoading(false)
+            setHasError(false)
+          }}
+          loading="lazy"
+          decoding="async"
+          unoptimized
+        />
+      )}
     </div>
   )
 }
