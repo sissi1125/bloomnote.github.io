@@ -202,7 +202,7 @@ export default function Features({ isIpad }: FeaturesProps) {
         ) : null}
 
         {typeof item.content.description === "string" ? (
-          <p className="text-gray-600 text-lg leading-relaxed text-justify">{item.content.description}</p>
+          <p className="text-gray-600 text-lg leading-relaxed text-justify font-lexend-deca">{item.content.description}</p>
         ) : (
           <div className="text-gray-600 text-lg">{item.content.description}</div>
         )}

@@ -177,7 +177,7 @@ export default function Hero({ isIpad, setIsIpad }: HeroProps) {
       transition: {
         type: "spring",
         stiffness: 200,
-        damping: 25,
+        damping: 40,
       },
     },
   }
@@ -186,7 +186,7 @@ export default function Hero({ isIpad, setIsIpad }: HeroProps) {
     // <div className="bg-white">
       <div className="w-[100%] max-w-[1000px] mx-auto py-14 px-3 sm:py-16 sm:px-12 lg:px-16 sm:w-[100%]">
           <motion.h1
-            className="text-4xl sm:text-6xl lg:text-7xl font-bold text-gray-900 text-center flex flex-wrap justify-center gap-x-3 gap-y-2 py-10"
+            className="text-5xl sm:text-6xl lg:text-7xl text-gray-900 text-center flex flex-wrap justify-center gap-x-3 gap-y-2 py-10"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -197,15 +197,15 @@ export default function Hero({ isIpad, setIsIpad }: HeroProps) {
                 <motion.span
                   key={index}
                   variants={isBlooms ? bloomsVariants : wordVariants}
-                  className={`inline-block relative ${isBlooms ? 'font-bold text-theme' : ''}`}
+                  className={`inline-block relative ${isBlooms ? 'font-bold text-theme ml-2' : ''}`}
                   animate={
                     isBlooms
                       ? {
                           scale: [1, 1.2, 1],
                           transition: {
                             scale: {
-                              duration: 10,
-                              delay: 1,
+                              duration: 20,
+                              delay: 10,
                               repeat: Infinity,
                               repeatDelay: 3,
                               ease: "easeInOut",
@@ -281,8 +281,11 @@ export default function Hero({ isIpad, setIsIpad }: HeroProps) {
             </div>
           </div>
           <div className="mt-12 text-center">
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">
+              Get Bloomnote for Free
+            </h3>
             <Link
-              href="https://apps.apple.com/app/bloomnote"
+              href={isIpad ? "https://apps.apple.com/us/app/bloomnote-notes-journal/id6738949546?platform=ipad" : "https://apps.apple.com/us/app/bloomnote-notes-journal/id6738949546"}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block transition-transform hover:scale-105"

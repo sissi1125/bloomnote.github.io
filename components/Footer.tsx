@@ -11,11 +11,11 @@ export default function Footer() {
       <div className="w-[80%] max-w-[1200px] mx-auto px-8 sm:px-12 lg:px-16 sm:w-[100%]">
         {/* Support Section */}
         <div id="support" className="text-center">
-          <h2 className="text-4xl font-bold text-brand-secondary">
+          <h2 className="text-5xl font-bold text-brand-secondary">
             Support
           </h2>
           
-          <div className="flex flex-col mb-12">
+          <div className="flex flex-col mb-12 mt-5">
             <p className="text-lg text-brand-secondary">
               For any questions or feedback, please contact us at:
             </p>

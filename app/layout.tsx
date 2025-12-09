@@ -1,5 +1,18 @@
 import './globals.css'
 import type { Metadata } from 'next'
+import { Source_Serif_4, Lexend_Deca } from 'next/font/google'
+
+const sourceSerif = Source_Serif_4({
+  subsets: ['latin'],
+  variable: '--font-source-serif',
+  display: 'swap',
+})
+
+const lexendDeca = Lexend_Deca({
+  subsets: ['latin'],
+  variable: '--font-lexend-deca',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'Bloomnote',
@@ -24,7 +37,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="overflow-x-hidden">
+      <body className={`${sourceSerif.variable} ${lexendDeca.variable} overflow-x-hidden`}>
         <div className="w-full max-w-[100vw] mx-auto overflow-x-hidden">
           {children}
         </div>

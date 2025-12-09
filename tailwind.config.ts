@@ -70,6 +70,10 @@ const config: Config = {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
+  		},
+  		fontFamily: {
+  			'source-serif': ['var(--font-source-serif)', 'serif'],
+  			'lexend-deca': ['var(--font-lexend-deca)', 'sans-serif'],
   		}
   	}
   },
