@@ -183,7 +183,7 @@ export default function FeatureSlider({ isIpad = false }: FeatureSliderProps) {
             return (
               <div
                 key={image.id}
-                className="relative w-full overflow-hidden"
+                className="relative w-full overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gray-50"
                 style={{
                   height: isIpad ? '300px' : '500px',
                 }}
@@ -261,7 +261,7 @@ export default function FeatureSlider({ isIpad = false }: FeatureSliderProps) {
             return (
               <motion.div
                 key={image.id}
-                className="flex-shrink-0 w-full"
+                className="flex-shrink-0 w-full px-2"
                 initial={{ 
                   opacity: 0, 
                   scale: 1,
@@ -278,7 +278,7 @@ export default function FeatureSlider({ isIpad = false }: FeatureSliderProps) {
                   damping: 30,
                 }}
               >
-                <div className="relative w-full h-full  overflow-hidden">
+                <div className="relative w-full h-full overflow-hidden rounded-2xl shadow-md bg-white">
                   {failedImages.has(image.id) ? (
                     /* eslint-disable-next-line @next/next/no-img-element */
                     <img

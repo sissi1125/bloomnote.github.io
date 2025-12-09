@@ -13,10 +13,10 @@ const config: Config = {
   		colors: {
   			// 主题色配置（使用 theme 避免与 shadcn 的 primary/secondary 冲突）
   			theme: {
-  				DEFAULT: colors.primary.DEFAULT,
-  				hover: colors.primary.hover,
-  				light: colors.primary.light,
-  				dark: colors.primary.dark,
+  				DEFAULT: '#2D3342', // 更深沉的蓝灰色
+  				hover: '#1F2430',
+  				light: '#4A5265',
+  				dark: '#1F2430',
   			},
   			brand: {
   				primary: colors.primary,
@@ -71,6 +71,25 @@ const config: Config = {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
+        keyframes: {
+            blob: {
+                "0%": {
+                    transform: "translate(0px, 0px) scale(1)",
+                },
+                "33%": {
+                    transform: "translate(30px, -50px) scale(1.1)",
+                },
+                "66%": {
+                    transform: "translate(-20px, 20px) scale(0.9)",
+                },
+                "100%": {
+                    transform: "translate(0px, 0px) scale(1)",
+                },
+            },
+        },
+        animation: {
+            blob: "blob 7s infinite",
+        },
   		fontFamily: {
   			'source-serif': ['var(--font-source-serif)', 'serif'],
   			'lexend-deca': ['var(--font-lexend-deca)', 'sans-serif'],

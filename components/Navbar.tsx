@@ -9,9 +9,18 @@ import { usePathname } from "next/navigation"
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isUpdatesOpen, setIsUpdatesOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
   const isHomePage = pathname === "/"
   const updatesDropdownRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
     e.preventDefault()
@@ -73,9 +82,14 @@ export default function Navbar() {
   }, [isUpdatesOpen])
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-4">
-        <div className="flex items-center justify-between h-16 shadow-2xl rounded-full px-4 sm:px-8 py-2 bg-white/90 backdrop-blur" style={{ boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.2)' }}>
+        <div 
+          className={`flex items-center justify-between h-16 rounded-full px-4 sm:px-8 py-2 transition-all duration-300 ${
+            scrolled ? "bg-white/80 backdrop-blur-md shadow-lg border border-white/20" : "bg-transparent"
+          }`}
+          style={scrolled ? { boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01)' } : {}}
+        >
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-3">
               <Image src="/images/appIcon.png?v=2" alt="Bloomnote Logo" width={24} height={24} unoptimized />
@@ -110,10 +124,10 @@ export default function Navbar() {
                 <ChevronDown className={`w-4 h-4 transition-transform ${isUpdatesOpen ? 'rotate-180' : ''}`} />
               </button>
               {isUpdatesOpen && (
-                <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg py-2 min-w-[140px] z-50">
+                <div className="absolute top-full left-0 mt-2 bg-white/90 backdrop-blur-md rounded-xl shadow-xl py-2 min-w-[160px] z-50 border border-gray-100 animate-in fade-in zoom-in-95 duration-200">
                   <Link
                     href="/changelog"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                    className="block px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50/80 hover:text-theme font-medium transition-colors"
                     onClick={() => setIsUpdatesOpen(false)}
                   >
                     Changelog
@@ -181,7 +195,6 @@ export default function Navbar() {
                     type="button"
                     className="block w-full text-left px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                     onClick={(e) => {
-                      console.log("Changelog clicked")
                       e.preventDefault()
                       e.stopPropagation()
                       setIsOpen(false)

@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import { motion } from "framer-motion"
 import FeatureGrid from "./FeatureGrid"
 import FeatureImage from "./FeatureImage"
 import FeatureSlider from "./FeatureSlider"
@@ -219,7 +220,9 @@ export default function Features({ isIpad }: FeaturesProps) {
             // 奇数索引（1, 3, 5...）：图片在左，文案在右
             // 忽略配置中的 imageOrder，使用索引自动判断
             const isEvenRow = index % 2 === 0
-            const imageOnRight = isEvenRow
+            // 0, 2, 4...: Image Left (Desktop)
+            // 1, 3, 5...: Image Right (Desktop)
+            const isImageLeft = isEvenRow
 
             const imageComponent = (
               <FeatureImage
@@ -240,22 +243,26 @@ export default function Features({ isIpad }: FeaturesProps) {
 
             const contentComponent = renderContent(feature)
 
-            // 桌面端布局：order-1 在左，order-2 在右
-            // 移动端布局：统一文案在上（order-1），图片在下（order-2）
-       
-              // 图片在右侧：文案在左，图片在右
-            return !imageOnRight ? (
-              <div key={feature.id} className="grid md:grid-cols-2 gap-12 items-center">
-                <div className="order-1">{contentComponent}</div>
-                <div className="order-2">{imageComponent}</div>
-              </div>
-            ):(
-              <div key={feature.id} className="grid md:grid-cols-2 gap-12 items-center">
-                <div className="order-2 md:order-1">{imageComponent}</div>
-                <div className="order-1 md:order-2">{contentComponent}</div>
-              </div>
+            return (
+              <motion.div 
+                key={feature.id} 
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+                className="grid md:grid-cols-2 gap-8 md:gap-16 items-center"
+              >
+                {/* Image Section */}
+                <div className={`order-1 ${isImageLeft ? 'md:order-1' : 'md:order-2'}`}>
+                  {imageComponent}
+                </div>
+
+                {/* Content Section */}
+                <div className={`order-2 ${isImageLeft ? 'md:order-2' : 'md:order-1'}`}>
+                  {contentComponent}
+                </div>
+              </motion.div>
             )
-            
           })}
 
           {/* Additional text */}

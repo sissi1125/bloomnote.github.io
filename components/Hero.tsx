@@ -183,10 +183,17 @@ export default function Hero({ isIpad, setIsIpad }: HeroProps) {
   }
 
   return (
-    // <div className="bg-white">
+    <div className="relative isolate">
+      {/* Background decoration */}
+      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div className="absolute -top-[20%] -left-[10%] w-[70%] h-[70%] rounded-full bg-blue-50/50 blur-[120px] mix-blend-multiply opacity-70 animate-blob" />
+        <div className="absolute -bottom-[20%] -right-[10%] w-[70%] h-[70%] rounded-full bg-orange-50/50 blur-[120px] mix-blend-multiply opacity-70 animate-blob animation-delay-2000" />
+        <div className="absolute top-[20%] left-[20%] w-[60%] h-[60%] rounded-full bg-purple-50/40 blur-[120px] mix-blend-multiply opacity-70 animate-blob animation-delay-4000" />
+      </div>
+
       <div className="w-[100%] max-w-[1000px] mx-auto py-14 px-3 sm:py-16 sm:px-12 lg:px-16 sm:w-[100%]">
           <motion.h1
-            className="text-5xl sm:text-6xl lg:text-7xl text-gray-900 text-center flex flex-wrap justify-center gap-x-3 gap-y-2 py-10"
+            className="text-5xl sm:text-6xl lg:text-7xl font-source-serif text-gray-900 text-center flex flex-wrap justify-center gap-x-3 gap-y-2 py-10"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -223,7 +230,10 @@ export default function Hero({ isIpad, setIsIpad }: HeroProps) {
           <DeviceSwitch onToggle={handleToggle} isIpad={isIpad} />
         
           <div className="mt-12 relative max-w-[1000px] mx-auto min-h-[180px]">
-            <div className="relative">
+            {/* Glow effect behind the device */}
+            <div className="absolute inset-0 bg-gradient-to-t from-transparent via-theme/5 to-transparent blur-2xl transform scale-95 opacity-50" />
+            
+            <div className="relative drop-shadow-2xl">
               {/* Loading 状态 */}
               {isLoading && !hasError && (
                 <div className="absolute inset-0 flex items-center justify-center bg-gray-50 rounded-lg">
@@ -294,7 +304,7 @@ export default function Hero({ isIpad, setIsIpad }: HeroProps) {
             </Link>
           </div>
       </div>
-    // </div>
+    </div>
   )
 }
 

@@ -14,7 +14,7 @@ export default function FeatureGrid(props: { isIpad: boolean }) {
             alt="Drawing feature"
             width={500}
             height={166}
-            className="mb-2"
+            className="mb-2 hover:scale-[1.01] transition-all duration-300"
             loading="lazy"
             decoding="async"
             unoptimized
@@ -25,7 +25,7 @@ export default function FeatureGrid(props: { isIpad: boolean }) {
             alt="Export feature"
             width={500}
             height={83}
-            className="mb-2"
+            className="mb-2 hover:scale-[1.01] transition-all duration-300"
             loading="lazy"
             decoding="async"
             unoptimized
@@ -36,7 +36,7 @@ export default function FeatureGrid(props: { isIpad: boolean }) {
             alt="Customizable app icons"
             width={500}
             height={83}
-            className="mb-2"
+            className="mb-2 hover:scale-[1.01] transition-all duration-300"
             loading="lazy"
             decoding="async"
             unoptimized
@@ -47,7 +47,7 @@ export default function FeatureGrid(props: { isIpad: boolean }) {
             alt="Multi-level search feature"
             width={500}
             height={83}
-            className="mb-2"
+            className="mb-2 hover:scale-[1.01] transition-all duration-300"
             loading="lazy"
             decoding="async"
             unoptimized
@@ -62,7 +62,7 @@ export default function FeatureGrid(props: { isIpad: boolean }) {
             alt="iCloud sync feature"
             width={500}
             height={83}
-            className="mb-2"
+            className="mb-2 hover:scale-[1.01] transition-all duration-300"
             loading="lazy"
             decoding="async"
             unoptimized
@@ -73,7 +73,7 @@ export default function FeatureGrid(props: { isIpad: boolean }) {
             alt="Summary view feature"
             width={500}
             height={83}
-            className="mb-2"
+            className="mb-2 hover:scale-[1.01] transition-all duration-300"
             loading="lazy"
             decoding="async"
             unoptimized
@@ -84,7 +84,7 @@ export default function FeatureGrid(props: { isIpad: boolean }) {
             alt="Tag system feature"
             width={500}
             height={83}
-            className="mb-2 -mt-4"
+            className="mb-2 -mt-4 hover:scale-[1.01] transition-all duration-300"
             loading="lazy"
             decoding="async"
             unoptimized
@@ -95,7 +95,7 @@ export default function FeatureGrid(props: { isIpad: boolean }) {
             alt=""
             width={500}
             height={83}
-            className="mb-2"
+            className="mb-2 hover:scale-[1.01] transition-all duration-300"
             loading="lazy"
             decoding="async"
             unoptimized
@@ -106,7 +106,7 @@ export default function FeatureGrid(props: { isIpad: boolean }) {
             alt="Nested link feature"
             width={500}
             height={83}
-            className="mb-2 -mt-3"
+            className="mb-2 -mt-3 hover:scale-[1.01] transition-all duration-300"
             loading="lazy"
             decoding="async"
             unoptimized
