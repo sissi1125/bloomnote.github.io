@@ -14,6 +14,7 @@ interface TemplatesPageClientProps {
 
 export default function TemplatesPageClient({ files }: TemplatesPageClientProps) {
   const [selected, setSelected] = useState<Record<string, boolean>>({})
+  const [downloading, setDownloading] = useState(false)
 
   const allSelected = useMemo(
     () => files.length > 0 && files.every((f) => selected[f.name]),
@@ -49,25 +50,50 @@ export default function TemplatesPageClient({ files }: TemplatesPageClientProps)
     setSelected(next)
   }
 
-  const downloadOne = (file: TemplateFile) => {
-    const link = document.createElement("a")
-    link.href = file.url
-    link.download = file.name
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-  }
-
   const downloadSelected = () => {
     const selectedFiles = files.filter((f) => selected[f.name])
     if (selectedFiles.length === 0) {
       return
     }
 
-    // 逐个触发浏览器下载
-    selectedFiles.forEach((file, index) => {
-      setTimeout(() => downloadOne(file), index * 200)
+    // 多选时通过后端打包为 zip，一次性下载，文件名为 日期-bloomnote.zip
+    const fileNames = selectedFiles.map((f) => f.name)
+    setDownloading(true)
+
+    fetch("/api/templates/download", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ files: fileNames }),
     })
+      .then(async (res) => {
+        if (!res.ok) {
+          throw new Error("下载失败")
+        }
+        const blob = await res.blob()
+        const url = window.URL.createObjectURL(blob)
+        const link = document.createElement("a")
+        // 文件名由服务端 Content-Disposition 控制，这里只是兜底
+        const now = new Date()
+        const yyyy = now.getFullYear()
+        const mm = String(now.getMonth() + 1).padStart(2, "0")
+        const dd = String(now.getDate()).padStart(2, "0")
+        const fallbackName = `${yyyy}-${mm}-${dd}-bloomnote.zip`
+
+        link.href = url
+        link.download = fallbackName
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        window.URL.revokeObjectURL(url)
+      })
+      .catch(() => {
+        // 失败时可以考虑提示，这里先静默失败避免打断体验
+      })
+      .finally(() => {
+        setDownloading(false)
+      })
   }
 
   if (files.length === 0) {
@@ -107,12 +133,12 @@ export default function TemplatesPageClient({ files }: TemplatesPageClientProps)
         </div>
         <button
           type="button"
-          disabled={!anySelected}
+          disabled={!anySelected || downloading}
           onClick={downloadSelected}
           className="inline-flex items-center justify-center gap-2 rounded-full bg-theme px-4 py-2 text-xs sm:text-sm font-medium text-white shadow-md hover:bg-theme-hover disabled:bg-gray-200 disabled:text-gray-400 disabled:shadow-none transition-colors"
         >
           <Download className="h-4 w-4" />
-          {anySelected ? "下载所选模板" : "选择后下载"}
+          {downloading ? "正在打包…" : anySelected ? "下载所选模板" : "选择后下载"}
         </button>
       </div>
 
@@ -152,14 +178,14 @@ export default function TemplatesPageClient({ files }: TemplatesPageClientProps)
                 </div>
               </button>
 
-              <button
-                type="button"
-                onClick={() => downloadOne(file)}
+              <a
+                href={file.url}
+                download={file.name}
                 className="ml-1 inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-50 text-gray-500 hover:bg-theme hover:text-white transition-colors"
                 aria-label={`下载 ${file.name}`}
               >
                 <Download className="h-4 w-4" />
-              </button>
+              </a>
             </div>
           )
         })}
