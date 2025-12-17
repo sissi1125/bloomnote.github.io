@@ -188,7 +188,6 @@ export default function Navbar() {
                     type="button"
                     className="block w-full text-left px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                     onClick={(e) => {
-                      console.log("Changelog clicked")
                       e.preventDefault()
                       e.stopPropagation()
                       setIsOpen(false)

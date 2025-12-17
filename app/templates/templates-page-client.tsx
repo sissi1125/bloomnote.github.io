@@ -60,7 +60,9 @@ export default function TemplatesPageClient({ files }: TemplatesPageClientProps)
 
   const downloadSelected = () => {
     const selectedFiles = files.filter((f) => selected[f.name])
-    if (selectedFiles.length === 0) return
+    if (selectedFiles.length === 0) {
+      return
+    }
 
     // 逐个触发浏览器下载
     selectedFiles.forEach((file, index) => {
