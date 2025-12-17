@@ -74,7 +74,8 @@ export async function POST(req: NextRequest) {
   const zipBuffer = await zip.generateAsync({
     type: "nodebuffer",
     compression: "DEFLATE",
-    compressionOptions: { level: 6 },
+    // 降低压缩等级，减少 CPU 时间，提升冷启动环境下的稳定性
+    compressionOptions: { level: 3 },
   })
 
   const now = new Date()

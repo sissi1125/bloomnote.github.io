@@ -58,22 +58,45 @@ export default function TemplatesPageClient({ files }: TemplatesPageClientProps)
 
     // 多选时通过后端打包为 zip，一次性下载，文件名为 日期-bloomnote.zip
     const fileNames = selectedFiles.map((f) => f.name)
+
+    // 带简单重试的打包请求，缓解部署环境下偶发的网络/冷启动失败
+    const fetchZipWithRetry = async (retries = 2): Promise<Blob> => {
+      let lastError: unknown
+      for (let attempt = 0; attempt <= retries; attempt++) {
+        try {
+          const res = await fetch("/api/templates/download", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ files: fileNames }),
+            cache: "no-store",
+          })
+
+          if (!res.ok) {
+            throw new Error(`下载失败（状态码 ${res.status}）`)
+          }
+
+          return await res.blob()
+        } catch (error) {
+          lastError = error
+          // 最后一次也失败，就直接抛出
+          if (attempt === retries) {
+            throw error
+          }
+          // 简单退避等待后重试：1s, 2s ...
+          const delay = 1000 * (attempt + 1)
+          await new Promise((resolve) => setTimeout(resolve, delay))
+        }
+      }
+      // 理论上不会走到这里
+      throw lastError ?? new Error("未知错误")
+    }
+
     try {
       setDownloading(true)
 
-      const res = await fetch("/api/templates/download", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ files: fileNames }),
-      })
-
-      if (!res.ok) {
-        throw new Error("下载失败")
-      }
-
-      const blob = await res.blob()
+      const blob = await fetchZipWithRetry()
       const url = window.URL.createObjectURL(blob)
       const link = document.createElement("a")
       // 文件名由服务端 Content-Disposition 控制，这里只是兜底
