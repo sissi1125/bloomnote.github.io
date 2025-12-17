@@ -82,7 +82,7 @@ export default function Navbar() {
               <span className="text-xl font-bold text-theme">Bloomnote</span>
             </Link>
           </div>
-          <div className="hidden sm:flex sm:space-x-12">
+          <div className="hidden sm:flex sm:space-x-10">
             <a 
               href="#features" 
               onClick={(e) => handleNavClick(e, "#features")}
@@ -125,6 +125,12 @@ export default function Navbar() {
                   >
                     Blog
                   </Link> */}
+                <Link
+                  href="/templates"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                >
+                  Templates
+                </Link>
                 </div>
               )}
             </div>
@@ -135,6 +141,7 @@ export default function Navbar() {
             >
               Support
             </a>
+      
           </div>
           <div className="sm:hidden">
             <button
@@ -217,6 +224,13 @@ export default function Navbar() {
             >
               Support
             </a>
+            <Link
+              href="/templates"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+              onClick={() => setIsOpen(false)}
+            >
+              Templates
+            </Link>
           </div>
         </div>
       )}
