@@ -60,7 +60,7 @@ export default function TemplatesPageClient({ files }: TemplatesPageClientProps)
     const fileNames = selectedFiles.map((f) => f.name)
 
     // 带简单重试的打包请求，缓解部署环境下偶发的网络/冷启动失败
-    const fetchZipWithRetry = async (retries = 2): Promise<Blob> => {
+    const fetchZipWithRetry = async (retries = 4): Promise<Blob> => {
       let lastError: unknown
       for (let attempt = 0; attempt <= retries; attempt++) {
         try {
@@ -171,7 +171,7 @@ export default function TemplatesPageClient({ files }: TemplatesPageClientProps)
 
         {downloading && (
           <p className="text-xs sm:text-sm text-gray-500 px-1">
-            打包需要一定时间，请耐心等待，下载完成前请不要关闭页面。
+            打包需要一定时间，请耐心等待，下载完成前请不要关闭页面；若失败，请点击下载重试。
           </p>
         )}
       </div>
