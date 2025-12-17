@@ -50,7 +50,7 @@ export default function TemplatesPageClient({ files }: TemplatesPageClientProps)
     setSelected(next)
   }
 
-  const downloadSelected = () => {
+  const downloadSelected = async () => {
     const selectedFiles = files.filter((f) => selected[f.name])
     if (selectedFiles.length === 0) {
       return
@@ -58,42 +58,43 @@ export default function TemplatesPageClient({ files }: TemplatesPageClientProps)
 
     // 多选时通过后端打包为 zip，一次性下载，文件名为 日期-bloomnote.zip
     const fileNames = selectedFiles.map((f) => f.name)
-    setDownloading(true)
+    try {
+      setDownloading(true)
 
-    fetch("/api/templates/download", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ files: fileNames }),
-    })
-      .then(async (res) => {
-        if (!res.ok) {
-          throw new Error("下载失败")
-        }
-        const blob = await res.blob()
-        const url = window.URL.createObjectURL(blob)
-        const link = document.createElement("a")
-        // 文件名由服务端 Content-Disposition 控制，这里只是兜底
-        const now = new Date()
-        const yyyy = now.getFullYear()
-        const mm = String(now.getMonth() + 1).padStart(2, "0")
-        const dd = String(now.getDate()).padStart(2, "0")
-        const fallbackName = `${yyyy}-${mm}-${dd}-bloomnote.zip`
+      const res = await fetch("/api/templates/download", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ files: fileNames }),
+      })
 
-        link.href = url
-        link.download = fallbackName
-        document.body.appendChild(link)
-        link.click()
-        document.body.removeChild(link)
-        window.URL.revokeObjectURL(url)
-      })
-      .catch(() => {
-        // 失败时可以考虑提示，这里先静默失败避免打断体验
-      })
-      .finally(() => {
-        setDownloading(false)
-      })
+      if (!res.ok) {
+        throw new Error("下载失败")
+      }
+
+      const blob = await res.blob()
+      const url = window.URL.createObjectURL(blob)
+      const link = document.createElement("a")
+      // 文件名由服务端 Content-Disposition 控制，这里只是兜底
+      const now = new Date()
+      const yyyy = now.getFullYear()
+      const mm = String(now.getMonth() + 1).padStart(2, "0")
+      const dd = String(now.getDate()).padStart(2, "0")
+      const fallbackName = `${yyyy}-${mm}-${dd}-bloomnote.zip`
+
+      link.href = url
+      link.download = fallbackName
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      window.URL.revokeObjectURL(url)
+    } catch (error) {
+      console.error(error)
+      alert("打包或下载失败，请稍后重试。")
+    } finally {
+      setDownloading(false)
+    }
   }
 
   if (files.length === 0) {
@@ -108,38 +109,48 @@ export default function TemplatesPageClient({ files }: TemplatesPageClientProps)
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 rounded-2xl border border-gray-100 bg-white/80 px-4 py-3 shadow-sm">
-        <div className="flex items-center gap-3 text-sm text-gray-600">
+      <div className="flex flex-col gap-2 rounded-2xl border border-gray-100 bg-white/80 px-4 py-3 shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div className="flex items-center gap-3 text-sm text-gray-600">
+            <button
+              type="button"
+              disabled={downloading}
+              onClick={allSelected ? handleClear : handleSelectAll}
+              className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-700 hover:border-theme/50 hover:text-theme disabled:text-gray-400 disabled:border-gray-200 disabled:cursor-not-allowed transition-colors"
+            >
+              {allSelected ? (
+                <CheckSquare className="h-3.5 w-3.5" />
+              ) : (
+                <Square className="h-3.5 w-3.5" />
+              )}
+              {allSelected ? "取消全选" : "全选"}
+            </button>
+            <button
+              type="button"
+              disabled={downloading}
+              onClick={handleInvert}
+              className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-700 hover:border-theme/50 hover:text-theme disabled:text-gray-400 disabled:border-gray-200 disabled:cursor-not-allowed transition-colors"
+            >
+              <MinusSquare className="h-3.5 w-3.5" />
+              反选
+            </button>
+          </div>
           <button
             type="button"
-            onClick={allSelected ? handleClear : handleSelectAll}
-            className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-700 hover:border-theme/50 hover:text-theme transition-colors"
+            disabled={!anySelected || downloading}
+            onClick={downloadSelected}
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-theme px-4 py-2 text-xs sm:text-sm font-medium text-white shadow-md hover:bg-theme-hover disabled:bg-gray-200 disabled:text-gray-400 disabled:shadow-none transition-colors"
           >
-            {allSelected ? (
-              <CheckSquare className="h-3.5 w-3.5" />
-            ) : (
-              <Square className="h-3.5 w-3.5" />
-            )}
-            {allSelected ? "取消全选" : "全选"}
-          </button>
-          <button
-            type="button"
-            onClick={handleInvert}
-            className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-700 hover:border-theme/50 hover:text-theme transition-colors"
-          >
-            <MinusSquare className="h-3.5 w-3.5" />
-            反选
+            <Download className="h-4 w-4" />
+            {downloading ? "正在打包…" : anySelected ? "下载所选模板" : "选择后下载"}
           </button>
         </div>
-        <button
-          type="button"
-          disabled={!anySelected || downloading}
-          onClick={downloadSelected}
-          className="inline-flex items-center justify-center gap-2 rounded-full bg-theme px-4 py-2 text-xs sm:text-sm font-medium text-white shadow-md hover:bg-theme-hover disabled:bg-gray-200 disabled:text-gray-400 disabled:shadow-none transition-colors"
-        >
-          <Download className="h-4 w-4" />
-          {downloading ? "正在打包…" : anySelected ? "下载所选模板" : "选择后下载"}
-        </button>
+
+        {downloading && (
+          <p className="text-xs sm:text-sm text-gray-500 px-1">
+            打包需要一定时间，请耐心等待，下载完成前请不要关闭页面。
+          </p>
+        )}
       </div>
 
       <div className="grid gap-3 sm:gap-4 sm:grid-cols-2">
@@ -152,8 +163,9 @@ export default function TemplatesPageClient({ files }: TemplatesPageClientProps)
             >
               <button
                 type="button"
+                disabled={downloading}
                 onClick={() => toggleFile(file.name)}
-                className="flex flex-1 items-center gap-3 text-left"
+                className="flex flex-1 items-center gap-3 text-left disabled:cursor-not-allowed"
               >
                 <span
                   className={`flex h-6 w-6 items-center justify-center rounded-md border text-theme transition-colors ${
@@ -181,7 +193,10 @@ export default function TemplatesPageClient({ files }: TemplatesPageClientProps)
               <a
                 href={file.url}
                 download={file.name}
-                className="ml-1 inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-50 text-gray-500 hover:bg-theme hover:text-white transition-colors"
+                aria-disabled={downloading}
+                className={`ml-1 inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-50 text-gray-500 hover:bg-theme hover:text-white transition-colors ${
+                  downloading ? "pointer-events-none opacity-60 cursor-not-allowed" : ""
+                }`}
                 aria-label={`下载 ${file.name}`}
               >
                 <Download className="h-4 w-4" />
