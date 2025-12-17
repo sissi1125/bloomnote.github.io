@@ -1,5 +1,5 @@
 import './globals.css'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Source_Serif_4, Lexend_Deca } from 'next/font/google'
 
 const sourceSerif = Source_Serif_4({
@@ -22,12 +22,13 @@ export const metadata: Metadata = {
     shortcut: '/favicon.ico?v=2',
     apple: '/images/appIcon.png?v=2',
   },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
-  },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 }
 
 export default function RootLayout({
